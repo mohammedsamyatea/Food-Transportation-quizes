@@ -2,229 +2,634 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Clown Party Webpage</title>
-  <!-- Bootstrap CSS CDN (optional) -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SafeFood Transport Quiz – Food Business Edition</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Merriweather:wght@700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/qrious@4.0.2/dist/qrious.min.js"></script>
   <style>
-    /* Embed your CSS here */
-
-    /* Import Google Fonts for playful font styles */
-    @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue&display=swap');
-
     :root {
-      /* Clown color palette */
-      --clown-red: #FF3B3B;
-      --clown-yellow: #FFD93D;
-      --clown-blue: #2EC5FF;
-      --clown-green: #41E2A0;
-      --clown-purple: #A66CFF;
-
-      /* Bootstrap overrides with clown palette */
-      --bs-primary: var(--clown-red);
-      --bs-secondary: var(--clown-purple);
-      --bs-success: var(--clown-green);
-      --bs-info: var(--clown-blue);
-      --bs-warning: var(--clown-yellow);
-      --bs-danger: var(--clown-red);
+      --primary: #2E7D32; /* green */
+      --primary-600: #1B5E20;
+      --secondary: #2F3A3B; /* dark slate */
+      --accent: #AF9961; /* muted gold */
+      --muted: #ECEFF1; /* light gray */
+      --ink: #253033;
+      --ink-soft: #4a5b60;
+      --paper: #ffffff;
+      --success-bg: #E8F5E9; /* subtle green */
+      --danger-bg: #FDECEA; /* subtle red */
+      --success-border: #A5D6A7;
+      --danger-border: #FFCDD2;
     }
 
-    /* Reset box-sizing for all elements */
-    *, *::after, *::before {
-      box-sizing: border-box;
-    }
-
-    /* Body styles with clown theme */
+    html, body { height: 100%; }
+    html { font-size: 140%; }
     body {
-      background: linear-gradient(135deg, var(--clown-yellow), var(--clown-blue));
-      color: #fff;
-      font-family: 'Comic Neue', cursive, sans-serif;
+      font-family: 'Cairo', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
       margin: 0;
-      padding: 0;
-      font-size: 100%;
-      line-height: 1.5;
+      padding-bottom: 90px;
+      color: var(--ink);
+      background: rgb(238, 234, 224);
     }
 
-    /* Headings styled with clown red and playful font */
-    h1, h2, h3, h4, h5, h6 {
-      color: var(--clown-red);
-      font-family: 'Bangers', cursive;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-      margin-top: 1em;
-      margin-bottom: 0.5em;
+    header {
+      background: linear-gradient(90deg, var(--secondary), var(--primary));
+      color: white;
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    }
+    header img { height: 56px; }
+    header h1 {
+      flex-grow: 1;
+      text-align: center;
+      margin: 0;
+      font-family: 'Cairo', sans-serif;
+      font-size: 50px;
+      letter-spacing: .5px;
+    }
+    
+
+    .container {
+      max-width: 820px;
+      margin: 2rem auto;
+      padding: 1.25rem;
+      background: var(--paper);
+      border-radius: 16px;
+      box-shadow:
+        0 1px 0 #00000005,
+        0 6px 14px rgba(0,0,0,0.06);
+      border: 1px solid #E0E6EA;
     }
 
-    /* Links styled for clown theme */
-    a {
-      color: var(--clown-purple);
-      text-decoration: underline;
-      transition: color 0.3s ease;
-    }
-    a:hover {
-      color: var(--clown-red);
-    }
+    /* Per-category theme ring for the whole question box */
+    #quizBox.qtheme-cool { box-shadow: 0 0 0 6px #1e88e533 inset, 0 1px 0 #00000008, 0 6px 14px rgba(0,0,0,0.10), 0 18px 40px rgba(0,0,0,0.08); }
+    #quizBox.qtheme-clean { box-shadow: 0 0 0 6px #00acc133 inset, 0 1px 0 #00000008, 0 6px 14px rgba(0,0,0,0.10), 0 18px 40px rgba(0,0,0,0.08); }
+    #quizBox.qtheme-transport { box-shadow: 0 0 0 6px #43A04733 inset, 0 1px 0 #00000008, 0 6px 14px rgba(0,0,0,0.10), 0 18px 40px rgba(0,0,0,0.08); }
+    #quizBox.qtheme-pack { box-shadow: 0 0 0 6px #8D6E6333 inset, 0 1px 0 #00000008, 0 6px 14px rgba(0,0,0,0.10), 0 18px 40px rgba(0,0,0,0.08); }
+    #quizBox.qtheme-label { box-shadow: 0 0 0 6px #F57C0033 inset, 0 1px 0 #00000008, 0 6px 14px rgba(0,0,0,0.10), 0 18px 40px rgba(0,0,0,0.08); }
 
-    /* Buttons styled with clown palette and hover effects */
-    button,
-    .btn {
-      background-color: var(--clown-green);
-      border: 2px solid var(--clown-red);
-      color: #fff;
-      font-family: 'Bangers', cursive;
-      font-weight: bold;
-      padding: 0.5em 1em;
-      border-radius: 0.375rem;
+    /* Remove gradients: keep a clean solid surface */
+    #quizBox.qtheme-cool,
+    #quizBox.qtheme-clean,
+    #quizBox.qtheme-transport,
+    #quizBox.qtheme-pack,
+    #quizBox.qtheme-label { background-image: none; background: var(--paper); }
+
+    .question {
+      font-family: 'Cairo', sans-serif;
+      font-size: 36px;
+      color: #1e1e1e;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .question::before { content: ''; }
+    .qicon { display:none; }
+    .qicon.cool { color: #1e88e5; }
+    .qicon.clean { color: #00acc1; }
+    .qicon.transport { color: #43A047; }
+    .qicon.pack { color: #8D6E63; }
+    .qicon.label { color: #F57C00; }
+
+    .qbadge {
+      display: inline-block;
+      margin-right: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-family: 'Cairo', sans-serif;
+      font-weight: 600;
+      font-size: 0.65em;
+      vertical-align: middle;
+      border: 2px solid #00000012;
+      background: #fff;
+    }
+    .qbadge.cool { background: #bbdefb; color: #0d47a1; }
+    .qbadge.clean { background: #b2ebf2; color: #006064; }
+    .qbadge.transport { background: #c8e6c9; color: #1b5e20; }
+    .qbadge.pack { background: #e1bee7; color: #4a148c; }
+    .qbadge.label { background: #ffe0b2; color: #e65100; }
+
+    .options { list-style: none; padding: 0; margin: 0; }
+    .options li {
+      position: relative;
+      background: #ffffff;
+      margin: 0.65rem 0;
+      padding: 0.9rem 1.1rem;
+      border-radius: 14px;
       cursor: pointer;
-      transition: all 0.3s ease;
+      font-size: 1em;
+      transition: transform 0.12s ease, box-shadow 0.2s ease;
+      box-shadow: 0 2px 0 #00000010, 0 10px 18px rgba(0,0,0,0.06);
+      border: 1px solid #E0E6EA;
     }
-    button:hover,
-    .btn:hover {
-      background-color: var(--clown-yellow);
-      transform: scale(1.05);
+    .options li:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(0,0,0,0.10); }
+    .options li::before { content: ''; }
+    .options li.correct {
+      background: var(--success-bg);
+      border-color: var(--success-border);
+      color: var(--primary-600);
+    }
+    .options li.incorrect {
+      background: var(--danger-bg);
+      border-color: var(--danger-border);
     }
 
-    /* Navbar and footer with fun gradient and dashed borders */
-    .navbar,
-    .fixed-nav {
-      background: linear-gradient(90deg, var(--clown-purple), var(--clown-yellow));
-      border-top: 4px dashed var(--clown-red);
-      padding: 1em;
+    #score {
+      margin-top: 1rem;
+      font-weight: 700;
+      color: #1d3b2f;
+      text-align: center;
+      background: linear-gradient(90deg, #fff, #f9f9f9);
+      border-radius: 10px;
+      padding: 8px 12px;
+      border: 2px solid #e8e8e8;
+      display: inline-block;
+      min-width: 220px;
+      font-size: 1em;
+    }
+
+    #certificate {
+      display: none;
+      text-align: center;
+      padding: 2rem 1.2rem 3rem;
+    }
+    #certificate .card {
+      margin: 0 auto;
+      max-width: 1000px;
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 2rem 2.5rem;
+      border: 1px solid #D8DFE3;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+      position: relative;
+    }
+    #certificate .ribbon { display:none; }
+    #certificate h2 {
+      color: var(--secondary);
+      font-size: 34px;
+      font-family: 'Merriweather', serif;
+      letter-spacing: .5px;
+      margin-bottom: 0.5rem;
+    }
+    #certificate button {
+      margin-top: 1rem;
+      background: var(--primary);
       color: #fff;
-      font-family: 'Bangers', cursive;
+      border: none;
+      padding: 0.65rem 1.25rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.12);
     }
 
-    /* Dropdown menu with playful border and shadow */
-    .dropdown-menu {
-      background-color: #fff8f0;
-      border: 3px dashed var(--clown-purple);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      padding: 1em;
+    /* Certificate footer */
+    .cert-footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      margin-top: 28px;
+      padding-top: 16px;
+      border-top: 1px solid #E0E6EA;
+    }
+    .sig-block {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+    .sig-text {
+      color: var(--secondary);
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .sig-line {
+      height: 1px;
+      background: #B0BEC5;
+      margin-top: 18px;
+    }
+    .sig-label {
+      color: var(--ink-soft);
+      font-size: 0.85em;
+      margin-top: 6px;
     }
 
-    /* Style dropdown headers for emphasis */
-    .dropdown-menu h3 {
-      color: var(--clown-red);
-      font-family: 'Bangers', cursive;
-      margin-bottom: 0.5em;
+    .nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #ffffff;
+      padding: 0.75rem;
+      text-align: center;
+      z-index: 10;
+      box-shadow: 0 -6px 16px rgba(0,0,0,0.06);
+    }
+    .nav button {
+      background: #fff;
+      color: #2E4A3B;
+      border: 3px solid #00000014;
+      padding: 0.6rem 1.1rem;
+      margin: 0 0.4rem;
+      border-radius: 14px;
+      cursor: pointer;
+      font-weight: 900;
+      font-family: 'Cairo', sans-serif;
+      font-size: 1em;
+      box-shadow: 0 3px 0 #00000010, 0 10px 16px rgba(0,0,0,0.08);
+      transition: transform .08s ease;
+    }
+    .nav button:hover { transform: translateY(-1px); }
+    .nav button:active { transform: translateY(2px); }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #fff;
+      border: 1px solid #E0E6EA;
+      border-radius: 12px;
+      padding: 1rem;
+      max-width: 460px;
+      width: 90%;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+      z-index: 200;
+      text-align: center;
+      background-image: none;
+    }
+    .modal h3 { margin-top: 0; color: var(--secondary); font-family: 'Cairo', sans-serif; font-size: 28px; }
+    .modal button {
+      margin-top: 0.75rem;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 0.55rem 1.1rem;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 700;
     }
 
-    /* Style images with fun shadow effects */
-    img {
-      filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.2));
-      transition: all 0.3s ease;
-    }
-    img:hover {
-      filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
-      transform: scale(1.05);
-    }
-
-    /* Additional global styles for form inputs, etc. */
-    input,
-    select,
-    textarea {
-      border: 2px solid var(--clown-purple);
-      padding: 0.5em;
-      border-radius: 0.375rem;
-      font-family: 'Comic Neue', cursive, sans-serif;
-      transition: border-color 0.3s ease;
-    }
-    input:focus,
-    select:focus,
-    textarea:focus {
-      border-color: var(--clown-yellow);
-      outline: none;
+    /* Certificate/Print adjustments */
+    body.certificate-mode header img { height: 28px; }
+    body.certificate-mode .nav { display: none; }
+    @media print {
+      @page { size: A4 landscape; margin: 10mm; }
+      body { background: #fff !important; }
+      header { box-shadow: none; }
+      header img { height: 24px !important; }
+      .nav, #score { display: none !important; }
+      #certificate { display: block !important; }
+      #quizBox, .modal { display: none !important; }
+      #certificate .card { max-width: 100%; box-shadow: none; border-width: 6px; }
     }
 
-    /* Style for alerts or other elements with clown colors */
-    .alert {
-      border: 2px dashed var(--clown-red);
-      background-color: #fff3cd;
-      color: #664d03;
-      padding: 1em;
-      border-radius: 0.375rem;
-    }
+    /* Removed playful animations for a professional tone */
 
-    /* Ensure all text uses the playful font family */
-    body, p, span, small, em, strong {
-      font-family: 'Comic Neue', cursive, sans-serif;
-    }
+    /* Confetti removed */
   </style>
 </head>
 <body>
+<header>
+  <img src="logo-left.png" alt="Left Logo" />
+  <h1>SafeFood Transport Training – Food Business Edition</h1>
+  <img src="logo-right.png" alt="Right Logo" />
+  </header>
 
-  <!-- Navbar -->
-  <nav class="navbar mb-4">
-    <div class="container">
-      <a class="navbar-brand" href="#">Clown Party</a>
-      <!-- Optional: Navigation links -->
-      <div class="d-flex gap-3">
-        <a href="#about" class="nav-link text-white">About</a>
-        <a href="#gallery" class="nav-link text-white">Gallery</a>
-        <a href="#contact" class="nav-link text-white">Contact</a>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Main Content -->
-  <div class="container text-center mb-5">
-    <h1>Welcome to the Clown Party!</h1>
-    <p>This is a playful themed webpage with fun colors and styles.</p>
-    <a href="#">Click me!</a>
-    <br /><br />
-    <button class="btn">Fun Button</button>
-    <br /><br />
-    <!-- Example image -->
-    <img src="https://via.placeholder.com/250x150.png?text=Clown+Image" alt="Clown Image" class="my-3" />
+<div class="container" id="quizBox">
+  <div class="question" id="question"></div>
+  <ul class="options" id="options"></ul>
+  <div style="text-align:center"><div id="score">📊 Score: 0 / 0</div></div>
   </div>
 
-  <!-- Additional Sections -->
-  
-  <!-- About Section -->
-  <section id="about" class="my-4 px-3">
-    <h2>About the Clown Party</h2>
-    <p>Join us for a colorful celebration full of laughter, fun, and clown surprises! Our party features games, performances, and lots of silly antics.</p>
-  </section>
-  
-  <!-- Gallery Section -->
-  <section id="gallery" class="my-4 px-3">
-    <h2>Gallery</h2>
-    <div class="row justify-content-center g-3">
-      <div class="col-md-4">
-        <img src="https://via.placeholder.com/300x200.png?text=Clown+1" class="img-fluid" alt="Clown 1" />
+<div id="certificate">
+  <div class="card">
+    <div class="ribbon">🎉 Congratulations! 🎉</div>
+    <h2>🎓 Certificate of Completion</h2>
+    <p>This certifies that <strong id="userName">Mohammed</strong> has successfully completed</p>
+    <p><em>SafeFood Transport Safety Training</em></p>
+    <p>Final Score: <strong id="finalScore">0/0</strong></p>
+    <div id="categoryStats" style="margin-top:12px"></div>
+    <div id="certMeta" style="margin-top:8px; color:#556; font-size:.9rem; display:flex; gap:12px; justify-content:center; align-items:center; flex-wrap:wrap">
+      <canvas id="certQr" width="96" height="96" style="border:1px solid #E0E6EA; border-radius:6px; background:#fff"></canvas>
+    </div>
+    <div class="cert-footer">
+      <div class="sig-block">
+        <div class="sig-text">Sharjah City Municipality – Health Control and Safety Department</div>
+        <div class="sig-line"></div>
+        <div class="sig-label">Authorized Signature</div>
       </div>
-      <div class="col-md-4">
-        <img src="https://via.placeholder.com/300x200.png?text=Clown+2" class="img-fluid" alt="Clown 2" />
+      <div class="sig-block" style="max-width: 260px; align-items:flex-end;">
+        <div class="sig-text" id="certDate">—</div>
+        <div class="sig-line" style="width:100%"></div>
+        <div class="sig-label">Date</div>
       </div>
     </div>
-  </section>
-  
-  <!-- Contact Section -->
-  <section id="contact" class="my-4 px-3">
-    <h2>Contact Us</h2>
-    <form class="mx-auto" style="max-width: 500px;">
-      <div class="mb-3">
-        <label for="name" class="form-label">Name</label>
-        <input type="text" id="name" class="form-control" placeholder="Your Name" />
-      </div>
-      <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
-        <input type="email" id="email" class="form-control" placeholder="you@example.com" />
-      </div>
-      <div class="mb-3">
-        <label for="message" class="form-label">Message</label>
-        <textarea id="message" class="form-control" rows="4" placeholder="Your message..."></textarea>
-      </div>
-      <button type="submit" class="btn">Send Message</button>
-    </form>
-  </section>
+    <div style="margin-top:12px; display:flex; gap:12px; justify-content:center; align-items:center; flex-wrap:wrap">
+      <button onclick="window.print()">🖨️ Print Your Certificate</button>
+      <button id="resetBtn" type="button" style="background:#fff;color:#2F3A3B;border:1px solid #CBD5E1">↺ Reset Quiz</button>
+    </div>
+  </div>
+  </div>
 
-  <!-- Footer -->
-  <footer class="fixed-bottom text-center p-3">
-    &copy; 2024 Clown Party. All rights reserved.
-  </footer>
+<div class="nav">
+  <button onclick="prevQuestion()">⬅️ Previous</button>
+  <button onclick="nextQuestion()">➡️ Next</button>
+  </div>
 
-  <!-- Bootstrap JS (optional) -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<div class="modal" id="feedbackModal">
+  <h3>💡 Tip</h3>
+  <p id="modalContent"></p>
+  <button onclick="closeModal()">Continue</button>
+  </div>
+<script>
+  let quizzes = [];
+  let current = 0;
+  let score = 0;
+  let answered = {};
+  let answeredCorrect = {};
+
+  function seedFallbackQuizzes() {
+    return [
+      {
+        id: 1,
+        question: 'What is the safest temperature for transporting perishable food?',
+        options: ['0-5°C', '10-15°C', '20-25°C', 'Any temperature'],
+        answer: 0,
+        explanation: 'Cold chain food should generally be kept at 0-5°C to prevent bacterial growth.'
+      },
+      {
+        id: 2,
+        question: 'Which practice reduces cross-contamination during transport?',
+        options: ['Mix raw and cooked foods', 'Separate sealed containers', 'No labels needed', 'Use same tools'],
+        answer: 1,
+        explanation: 'Separate sealed containers and labeling help avoid cross-contamination.'
+      },
+      {
+        id: 3,
+        question: 'What should be done before loading food?',
+        options: ['Ignore vehicle cleanliness', 'Sanitize vehicle surfaces', 'Turn off refrigeration', 'Skip checks'],
+        answer: 1,
+        explanation: 'Sanitizing reduces contamination risk; ensure refrigeration is functional before loading.'
+      }
+    ];
+  }
+
+  fetch('quizzes.json')
+    .then(res => res.ok ? res.json() : Promise.reject())
+    .then(data => {
+      quizzes = data.quizzes || seedFallbackQuizzes();
+      showQuestion();
+      updateScore();
+    })
+    .catch(() => {
+      quizzes = seedFallbackQuizzes();
+      showQuestion();
+      updateScore();
+    });
+
+  function showQuestion() {
+    const q = quizzes[current];
+    if (!q) return;
+    const manualType = normalizeType(q.category);
+    const type = manualType || detectType(q.question);
+    const icon = '';
+    const qEl = document.getElementById('question');
+    const badge = type ? `<span class="qbadge ${type}">${type}</span>` : '';
+    qEl.innerHTML = `${badge} Q${q.id}: ${q.question}`;
+    const box = document.getElementById('quizBox');
+    box.classList.remove('qtheme-cool','qtheme-clean','qtheme-transport','qtheme-pack','qtheme-label');
+    if (type) box.classList.add(`qtheme-${type}`);
+    const optionsList = document.getElementById('options');
+    optionsList.innerHTML = '';
+
+    q.options.forEach((opt, i) => {
+      const li = document.createElement('li');
+      li.textContent = opt;
+      li.onclick = () => {
+        if (answered[current]) return;
+        answered[current] = true;
+        if (i === q.answer) {
+          li.classList.add('correct');
+          score++;
+          answeredCorrect[current] = true;
+        } else {
+          li.classList.add('incorrect');
+          if (optionsList.children[q.answer]) {
+            optionsList.children[q.answer].classList.add('correct');
+          }
+          answeredCorrect[current] = false;
+        }
+        updateScore();
+        // Show tip immediately after choosing
+        const tipText = `✅ Correct answer: ${q.options[q.answer]}\n💬 ${q.explanation}`;
+        document.getElementById('modalContent').textContent = tipText;
+        document.getElementById('feedbackModal').style.display = 'block';
+      };
+      optionsList.appendChild(li);
+    });
+  }
+
+  function detectType(text) {
+    const t = (text || '').toLowerCase();
+    if (/(temp|cold|chill|cool|°|c|cold chain|freeze|refriger)/.test(t)) return 'cool';
+    if (/(sanitize|clean|hygiene|wash|disinfect|cleanliness)/.test(t)) return 'clean';
+    if (/(transport|truck|deliver|vehicle|load|unload|route)/.test(t)) return 'transport';
+    if (/(pack|seal|container|package|wrap|box)/.test(t)) return 'pack';
+    if (/(label|expiry|date|trace|tag)/.test(t)) return 'label';
+    return '';
+  }
+
+  function detectIcon(text) {
+    const t = (text || '').toLowerCase();
+    if (/(temp|cold|chill|cool|°|c|cold chain|freeze|refriger)/.test(t)) return '🧊';
+    if (/(sanitize|clean|hygiene|wash|disinfect|sanitize|cleanliness)/.test(t)) return '🧼';
+    if (/(transport|truck|deliver|vehicle|load|unload|route)/.test(t)) return '🚚';
+    if (/(pack|seal|container|package|wrap|box)/.test(t)) return '🥡';
+    if (/(label|expiry|date|trace|tag)/.test(t)) return '🏷️';
+    return '🍽️';
+  }
+
+  function normalizeType(category) {
+    if (!category) return '';
+    const t = String(category).toLowerCase().trim();
+    if (/^(temp|cold|cool|chill|freeze|refriger|temperature|cold\s*chain)$/.test(t)) return 'cool';
+    if (/^(clean|cleaning|hygiene|wash|sanitize|sanitization|disinfect)$/.test(t)) return 'clean';
+    if (/^(transport|delivery|vehicle|logistics|route|loading)$/.test(t)) return 'transport';
+    if (/^(pack|packaging|seal|container|boxing|wrapping)$/.test(t)) return 'pack';
+    if (/^(label|labelling|labeling|expiry|expiration|trace|traceability|tag)$/.test(t)) return 'label';
+    return '';
+  }
+
+  function iconForType(type) {
+    switch (type) {
+      case 'cool': return '🧊';
+      case 'clean': return '🧼';
+      case 'transport': return '🚚';
+      case 'pack': return '🥡';
+      case 'label': return '🏷️';
+      default: return '🍽️';
+    }
+  }
+
+  function nextQuestion() {
+    const modal = document.getElementById('feedbackModal');
+    if (modal.style.display === 'block') {
+      return; // wait for user to close modal
+    }
+    if (current < quizzes.length - 1) {
+      current++;
+      showQuestion();
+    } else if (answered[current]) {
+      showCertificate();
+    }
+  }
+
+  function closeModal() {
+    document.getElementById('feedbackModal').style.display = 'none';
+    if (current < quizzes.length - 1) {
+      current++;
+      showQuestion();
+    } else {
+      showCertificate();
+    }
+  }
+
+  function prevQuestion() {
+    if (current > 0) {
+      current--;
+      showQuestion();
+    }
+  }
+
+  function updateScore() {
+    const el = document.getElementById('score');
+    if (el) el.textContent = `📊 Score: ${score} / ${quizzes.length}`;
+  }
+
+  function showCertificate() {
+    document.getElementById('quizBox').style.display = 'none';
+    document.getElementById('finalScore').textContent = `${score} / ${quizzes.length}`;
+    document.getElementById('certificate').style.display = 'block';
+    document.body.classList.add('certificate-mode');
+    renderCategoryStats();
+    const d = new Date();
+    const dateStr = d.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+    const dateEl = document.getElementById('certDate');
+    if (dateEl) dateEl.textContent = dateStr;
+    const certId = generateCertificateId();
+    const meta = document.getElementById('certMeta');
+    const verifyUrl = `${window.location.origin}/verify?cert=${encodeURIComponent(certId)}`;
+    if (meta) {
+      // prepend text label and verify link before QR canvas
+      const label = document.createElement('span');
+      label.textContent = `Certificate ID: ${certId}`;
+      const link = document.createElement('a');
+      link.href = verifyUrl;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.textContent = 'Verify online';
+      link.style.marginLeft = '8px';
+      meta.prepend(label);
+      meta.prepend(link);
+    }
+    renderQr(verifyUrl);
+    
+  }
+
+  function burstConfetti(count = 50) {
+    const colors = [
+      'var(--clown-red)', 'var(--clown-yellow)', 'var(--clown-green)', 'var(--clown-blue)', 'var(--clown-purple)'
+    ];
+    for (let i = 0; i < count; i++) {
+      const piece = document.createElement('div');
+      piece.className = 'confetti';
+      piece.style.left = Math.random() * 100 + 'vw';
+      piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+      piece.style.transform = `translateY(-20px) rotate(${Math.random()*360}deg)`;
+      const duration = 2.4 + Math.random() * 1.6;
+      piece.style.animationDuration = duration + 's';
+      piece.style.opacity = (0.7 + Math.random()*0.3).toFixed(2);
+      piece.style.width = (6 + Math.random()*8) + 'px';
+      piece.style.height = (8 + Math.random()*12) + 'px';
+      document.body.appendChild(piece);
+      setTimeout(() => piece.remove(), duration * 1000);
+    }
+  }
+
+  function renderCategoryStats() {
+    const counters = { cool: { c: 0, t: 0, icon: '🧊', label: 'Cold Chain' }, clean: { c: 0, t: 0, icon: '🧼', label: 'Hygiene' }, transport: { c: 0, t: 0, icon: '🚚', label: 'Transport' }, pack: { c: 0, t: 0, icon: '🥡', label: 'Packaging' }, label: { c: 0, t: 0, icon: '🏷️', label: 'Labelling' } };
+    quizzes.forEach((q, idx) => {
+      const manual = normalizeType(q.category);
+      const type = manual || detectType(q.question);
+      const key = counters[type] ? type : null;
+      if (!key) return;
+      counters[key].t += 1;
+      if (answeredCorrect[idx] === true) counters[key].c += 1;
+    });
+    const container = document.getElementById('categoryStats');
+    const order = ['cool','clean','transport','pack','label'];
+    const parts = order
+      .filter(k => counters[k].t > 0)
+      .map(k => {
+        const { c, t, icon, label } = counters[k];
+        return `<span style="display:inline-flex;align-items:center;gap:6px;margin:4px 8px;padding:6px 10px;border-radius:999px;background:#ffffffcc;border:1px solid #00000012">${icon} <strong>${label}</strong> <span style="opacity:.8">${c}/${t}</span></span>`;
+      });
+    container.innerHTML = parts.join('');
+  }
+
+  function generateCertificateId() {
+    const rnd = Math.random().toString(36).slice(2, 8).toUpperCase();
+    const ts = Date.now().toString(36).toUpperCase().slice(-6);
+    return `${ts}-${rnd}`;
+  }
+
+  function renderQr(text) {
+    try {
+      const canvas = document.getElementById('certQr');
+      if (!canvas || typeof QRious === 'undefined') return;
+      new QRious({ element: canvas, value: text, size: 96, level: 'H', background: 'white', foreground: '#222' });
+    } catch (_) {}
+  }
+
+  // Reset quiz flow
+  document.addEventListener('click', (e) => {
+    if (e.target && e.target.id === 'resetBtn') {
+      resetQuiz();
+    }
+  });
+
+  function resetQuiz() {
+    current = 0;
+    score = 0;
+    answered = {};
+    answeredCorrect = {};
+    document.getElementById('certificate').style.display = 'none';
+    document.getElementById('quizBox').style.display = 'block';
+    document.body.classList.remove('certificate-mode');
+    showQuestion();
+    updateScore();
+  }
+
+  // Basic RTL auto-detect (Arabic locales)
+  (function applyRTL() {
+    try {
+      const lang = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+      if (lang.startsWith('ar')) {
+        document.documentElement.setAttribute('dir', 'rtl');
+      }
+    } catch (_) {}
+  })();
+</script>
 </body>
 </html>
+
+
