@@ -7,32 +7,33 @@
 <style>
   body {
     font-family: 'Comic Sans MS', cursive, sans-serif;
-    background: #ffe0b2;
+    background: linear-gradient(135deg, #ffe4e1, #ffe0b2);
     margin: 0;
     padding: 20px;
   }
   .container {
-    max-width: 800px;
+    max-width: 900px;
     margin: auto;
   }
   .window {
     display: none;
-    background: #fff3e0;
+    background: #ffffff;
     padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    border-radius: 25px;
+    box-shadow: 0 12px 24px rgba(0,0,0,0.2);
     text-align: center;
+    transition: all 0.5s ease;
   }
   .active {
     display: block;
   }
   h1, h2 {
-    font-size: 2em;
+    font-size: 2.5em;
     margin-bottom: 20px;
     color: #d84315;
   }
   p {
-    font-size: 1.2em;
+    font-size: 1.4em;
     margin-bottom: 30px;
   }
   /* Fun buttons */
@@ -40,101 +41,116 @@
     background: #ff7043;
     color: white;
     border: none;
-    padding: 15px 30px;
-    margin: 10px;
-    border-radius: 25px;
-    font-size: 1.2em;
+    padding: 15px 35px;
+    margin: 20px 10px 10px 10px;
+    border-radius: 30px;
+    font-size: 1.3em;
     cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
   }
   button:hover {
     background: #ef6c00;
     transform: scale(1.05);
   }
-
   /* Options styling */
   .options {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 30px;
     margin-top: 20px;
   }
   .option {
-    font-size: 3em;
+    font-size: 2.5em;
     padding: 20px;
     background: #ffe0b2;
     border-radius: 50%;
     cursor: pointer;
-    transition: all 0.3s;
-    border: 3px solid transparent;
+    border: 4px solid transparent;
+    transition: all 0.3s ease;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .option:hover {
-    transform: scale(1.1);
-    border-color: #d84315;
     background: #ffd180;
+    border-color: #d84315;
+    transform: scale(1.1);
   }
   /* Feedback message styles */
   #feedback {
-    font-size: 1.4em;
-    margin-top: 20px;
-    height: 50px; /* space for feedback */
+    margin-top: 25px;
+    font-size: 1.5em;
+    min-height: 50px;
   }
-  /* Progress indicator */
+  /* Progress indicator style */
   #progress {
     margin-top: 15px;
+    font-size: 1.2em;
     font-weight: bold;
+  }
+  /* Celebration styles */
+  .celebration {
+    font-size: 3em;
+    margin-top: 20px;
+    animation: bounce 1s infinite;
+  }
+  @keyframes bounce {
+    0%, 100% {transform: translateY(0);}
+    50% {transform: translateY(-10px);}
   }
 </style>
 </head>
 <body>
 
 <div class="container">
-
   <!-- Welcome Screen -->
   <div id="window1" class="window active">
-    <h1>🚀 Welcome to the Food Transport Safety Quiz! 🎉</h1>
-    <p>Let's learn and have fun! Ready to start?</p>
-    <button onclick="goToNext()">🎉 Let's Go! 🎉</button>
+    <h1>🚀 Welcome to the Food Safety Fun Quiz! 🎉</h1>
+    <p>Let's learn how to keep food safe and have fun doing it! Ready for the adventure?</p>
+    <button onclick="goToNext()">🎉 Let's Start! 🎉</button>
   </div>
 
   <!-- Question 1 -->
   <div id="window2" class="window">
-    <h2>🧊 What's the best way to keep food cold during transport?</h2>
+    <h2>🧊 What's the best way to keep food cold during transportation?</h2>
     <div class="options">
-      <div class="option" onclick="answer(1, true)">🔥</div>
-      <div class="option" onclick="answer(2, false)">🧊</div>
+      <div class="option" onclick="answer(1, false)">🔥</div>
+      <div class="option" onclick="answer(2, true)">🧊</div>
       <div class="option" onclick="answer(3, false)">🌞</div>
     </div>
     <div id="feedback"></div>
-    <div id="progress">Question 1 of 5</div>
-    <button onclick="goToNext()" disabled id="nextBtn1">Next</button>
+    <div id="progress">Question 1 of 29</div>
+    <button id="nextBtn1" onclick="goToNext()" disabled>Next ➡️</button>
   </div>
 
   <!-- Question 2 -->
   <div id="window3" class="window">
-    <h2>🚚 How should you check your vehicle before starting?</h2>
+    <h2>🚚 Before starting your trip, what should you check?</h2>
     <div class="options">
       <div class="option" onclick="answer(1, false)">Ignore it</div>
       <div class="option" onclick="answer(2, true)">Inspect for cleanliness and safety</div>
       <div class="option" onclick="answer(3, false)">Just check the tires</div>
     </div>
     <div id="feedback"></div>
-    <div id="progress">Question 2 of 5</div>
-    <button onclick="goToNext()" disabled id="nextBtn2">Next</button>
+    <div id="progress">Question 2 of 29</div>
+    <button id="nextBtn2" onclick="goToNext()" disabled>Next ➡️</button>
   </div>
 
   <!-- Question 3 -->
   <div id="window4" class="window">
-    <h2>🔒 What's the safest way to secure food in the vehicle?</h2>
+    <h2>🔒 How should you secure the food inside the vehicle?</h2>
     <div class="options">
       <div class="option" onclick="answer(1, false)">Leave it loose</div>
       <div class="option" onclick="answer(2, true)">Use straps and barriers</div>
       <div class="option" onclick="answer(3, false)">Stack it without fixing</div>
     </div>
     <div id="feedback"></div>
-    <div id="progress">Question 3 of 5</div>
-    <button onclick="goToNext()" disabled id="nextBtn3">Next</button>
+    <div id="progress">Question 3 of 29</div>
+    <button id="nextBtn3" onclick="goToNext()" disabled>Next ➡️</button>
   </div>
 
   <!-- Question 4 -->
@@ -142,33 +158,345 @@
     <h2>📝 Why is proper documentation important?</h2>
     <div class="options">
       <div class="option" onclick="answer(1, false)">For fun</div>
-      <div class="option" onclick="answer(2, true)">To ensure proper tracking and compliance</div>
+      <div class="option" onclick="answer(2, true)">To keep track and stay compliant</div>
+      <div class="option" onclick="answer(3, false)">It’s not necessary</div>
+    </div>
+    <div id="feedback"></div>
+    <div id="progress">Question 4 of 29</div>
+    <button id="nextBtn4" onclick="goToNext()" disabled>Next ➡️</button>
+  </div>
+
+  <!-- Question 5 -->
+  <div id="window6" class="window">
+    <h2>🌡️ Why is maintaining proper temperature critical?</h2>
+    <div class="options">
+      <div class="option" onclick="answer(1, false)">Because it looks nice</div>
+      <div class="option" onclick="answer(2, true)">To prevent bacteria growth</div>
       <div class="option" onclick="answer(3, false)">It’s not important</div>
     </div>
     <div id="feedback"></div>
-    <div id="progress">Question 4 of 5</div>
-    <button onclick="goToNext()" disabled id="nextBtn4">Next</button>
+    <div id="progress">Question 5 of 29</div>
+    <button id="nextBtn5" onclick="goToNext()" disabled>Next ➡️</button>
   </div>
 
-  <!-- Question 5 (Final) -->
-  <div id="window6" class="window">
-    <h2>🎉 Congratulations! You completed the quiz!</h2>
-    <p>Great job! Remember, safety is fun and important!</p>
-    <div class="symbol-large">🏆</div>
-    <button onclick="finish()">🎓 Finish & Get Your Certificate 🎓</button>
+  <!-- Question 6 -->
+  <div id="window7" class="window">
+    <h2>🌟 How do you handle food that arrives damaged?</h2>
+    <div class="options">
+      <div class="option" onclick="answer(1, false)">Use it anyway</div>
+      <div class="option" onclick="answer(2, false)">Report and discard if needed</div>
+      <div class="option" onclick="answer(3, true)">Report and discard it safely</div>
+    </div>
+    <div id="feedback"></div>
+    <div id="progress">Question 6 of 29</div>
+    <button id="nextBtn6" onclick="goToNext()" disabled>Next ➡️</button>
   </div>
 
-  <!-- Feedback message -->
-  <div id="finalMessage" style="text-align:center; margin-top:20px; font-size:1.2em;"></div>
+  <!-- Question 7 -->
+  <div id="window8" class="window">
+    <h2>🥡 How should leftovers be stored?</h2>
+    <div class="options">
+      <div class="option" onclick="answer(1, false)">Leave them out</div>
+      <div class="option" onclick="answer(2, false)">Store in proper containers and refrigeration</div>
+      <div class="option" onclick="answer(3, true)">Store properly in sealed containers</div>
+    </div>
+    <div id="feedback"></div>
+    <div id="progress">Question 7 of 29</div>
+    <button id="nextBtn7" onclick="goToNext()" disabled>Next ➡️</button>
+  </div>
+
+  <!-- Question 8 -->
+  <div id="window9" class="window">
+    <h2>🍎 Why is cross-contamination dangerous?</h2>
+    <div class="options">
+      <div class="option" onclick="answer(1, false)">It’s not dangerous</div>
+      <div class="option" onclick="answer(2, true)">It can cause illness</div>
+      <div class="option" onclick="answer(3, false)">It makes food taste better</div>
+    </div>
+    <div id="feedback"></div>
+    <div id="progress">Question 8 of 29</div>
+    <button id="nextBtn8" onclick="goToNext()" disabled>Next ➡️</button>
+  </div>
+
+  <!-- Question 9 -->
+  <div id="window10" class="window">
+    <h2>🥤 How do you clean food contact surfaces?</h2>
+    <div class="options">
+      <div class="option" onclick="answer(1, false)">Wipe with a damp cloth only</div>
+      <div class="option" onclick="answer(2, false)">Use soap and hot water, then sanitize</div>
+      <div class="option" onclick="answer(3, true)">Use proper cleaning and sanitizing procedures</div>
+    </div>
+    <div id="feedback"></div>
+    <div id="progress">Question 9 of 29</div>
+    <button id="nextBtn9" onclick="goToNext()" disabled>Next ➡️</button>
+  </div>
+
+  <!-- Question 10 -->
+  <div id="window11" class="window">
+    <h2>🍽️ How do you handle food during transport?</h2>
+    <div class="options">
+      <div class="option" onclick="answer(1, false)">Leave it uncovered</div>
+      <div class="option" onclick="answer(2, false)">Cover and secure it properly</div>
+      <div class="option" onclick="answer(3, true)">Use containers and secure straps</div>
+    </div>
+    <div id="feedback"></div>
+    <div id="progress">Question 10 of 29</div>
+    <button id="nextBtn10" onclick="goToNext()" disabled>Next ➡️</button>
+  </div>
+
+  <!-- Question 11 -->
+  <div id="window12" class="window">
+    <h2>🧳 Why should you do regular vehicle maintenance?</h2>
+    <div class="options">
+      <div class="option" onclick="answer(1, false)">To keep it looking nice</div>
+      <div class="option" onclick="answer(2, false)">To prevent breakdowns and ensure safety</div>
+      <div class="option" onclick="answer(3, true)">To prevent accidents and ensure safety</div>
+    </div>
+    <div id="feedback"></div>
+    <div id="progress">Question 11 of 29</div>
+    <button id="nextBtn11" onclick="goToNext()" disabled>Next ➡️</button>
+  </div>
+
+  <!-- Question 12 -->
+  <div id="window13" class="window">
+    <h2>🌟 Why is training your team important?</h2>
+    <div class="options">
+      <div class="option" onclick="answer(1, false)">To make them work faster</div>
+      <div class="option" onclick="answer(2, false)">To ensure everyone follows safety procedures</div>
+      <div class="option" onclick="answer(3, true)">To keep everyone safe and compliant</div>
+    </div>
+    <div id="feedback"></div>
+    <div id="progress">Question 12 of 29</div>
+    <button id="nextBtn12" onclick="goToNext()" disabled>Next ➡️</button>
+  </div>
+
+  <!-- Question 13 -->
+  <div id="window14" class="window">
+    <h2>🚦 How do you handle emergency situations?</h2>
+    <div class="options">
+      <div class="option" onclick="answer(1, false)">Ignore it</div>
+      <div class="option" onclick="answer(2, true)">Follow safety protocols and report immediately</div>
+      <div class="option" onclick="answer(3, false)">Try to fix it yourself without training</div>
+    </div>
+    <div id="feedback"></div>
+    <div id="progress">Question 13 of 29</div>
+    <button id="nextBtn13" onclick="goToNext()" disabled>Next ➡️</button>
+  </div>
+
+  <!-- Question 14 -->
+  <div id="window15" class="window">
+    <h2>🚛 How should you handle fragile items?</h2>
+    <div class="options">
+      <div class="option" onclick="answer(1, false)">Stack them tightly</div>
+      <div class="option" onclick="answer(2, false)">Wrap and secure carefully</div>
+      <div class="option" onclick="answer(3, true)">Handle gently and secure properly</div>
+    </div>
+    <div id="feedback"></div>
+    <div id="progress">Question 14 of 29</div>
+    <button id="nextBtn14" onclick="goToNext()" disabled>Next ➡️</button>
+  </div>
+
+  <!-- Question 15 -->
+  <div id="window16" class="window">
+    <h2>🧼 How often should you sanitize equipment?</h2>
+    <div class="options">
+      <div class="option" onclick="answer(1, false)">Once a month</div>
+      <div class="option" onclick="answer(2, false)">After every use or daily</div>
+      <div class="option" onclick="answer(3, true)">Regularly, following procedures</div>
+    </div>
+    <div id="feedback"></div>
+    <div id="progress">Question 15 of 29</div>
+    <button id="nextBtn15" onclick="goToNext()" disabled>Next ➡️</button>
+  </div>
+
+  <!-- Question 16 -->
+  <div id="window17" class="window">
+    <h2>🍏 Why is food temperature control critical?</h2>
+    <div class="options">
+      <div class="option" onclick="answer(1, false)">It keeps the food looking fresh</div>
+      <div class="option" onclick="answer(2, true)">To prevent bacteria growth and illness</div>
+      <div class="option" onclick="answer(3, false)">It’s not that important</div>
+    </div>
+    <div id="feedback"></div>
+    <div id="progress">Question 16 of 29</div>
+    <button id="nextBtn16" onclick="goToNext()" disabled>Next ➡️</button>
+  </div>
+
+  <!-- Question 17 -->
+  <div id="window18" class="window">
+    <h2>🧴 How do you properly clean food contact surfaces?</h2>
+    <div class="options">
+      <div class="option" onclick="answer(1, false)">Wipe with a dry cloth</div>
+      <div class="option" onclick="answer(2, false)">Use soap, hot water, then sanitize</div>
+      <div class="option" onclick="answer(3, true)">Follow proper cleaning and sanitizing procedures</div>
+    </div>
+    <div id="feedback"></div>
+    <div id="progress">Question 17 of 29</div>
+    <button id="nextBtn17" onclick="goToNext()" disabled>Next ➡️</button>
+  </div>
+
+  <!-- Question 18 -->
+  <div id="window19" class="window">
+    <h2>🍽️ How should leftovers be stored?</h2>
+    <div class="options">
+      <div class="option" onclick="answer(1, false)">Leave them out</div>
+      <div class="option" onclick="answer(2, false)">In open containers</div>
+      <div class="option" onclick="answer(3, true)">In sealed containers in the fridge</div>
+    </div>
+    <div id="feedback"></div>
+    <div id="progress">Question 18 of 29</div>
+    <button id="nextBtn18" onclick="goToNext()" disabled>Next ➡️</button>
+  </div>
+
+  <!-- Question 19 -->
+  <div id="window20" class="window">
+    <h2>🧊 Why is keeping food at correct temps important?</h2>
+    <div class="options">
+      <div class="option" onclick="answer(1, false)">To make it look good</div>
+      <div class="option" onclick="answer(2, true)">To prevent bacteria growth</div>
+      <div class="option" onclick="answer(3, false)">It’s not important</div>
+    </div>
+    <div id="feedback"></div>
+    <div id="progress">Question 19 of 29</div>
+    <button id="nextBtn19" onclick="goToNext()" disabled>Next ➡️</button>
+  </div>
+
+  <!-- Question 20 -->
+  <div id="window21" class="window">
+    <h2>🥡 How do you handle food arriving damaged?</h2>
+    <div class="options">
+      <div class="option" onclick="answer(1, false)">Use it anyway</div>
+      <div class="option" onclick="answer(2, false)">Report and discard if needed</div>
+      <div class="option" onclick="answer(3, true)">Report and discard safely</div>
+    </div>
+    <div id="feedback"></div>
+    <div id="progress">Question 20 of 29</div>
+    <button id="nextBtn20" onclick="goToNext()" disabled>Next ➡️</button>
+  </div>
+
+  <!-- Question 21 -->
+  <div id="window22" class="window">
+    <h2>🥶 How should frozen foods be handled?</h2>
+    <div class="options">
+      <div class="option" onclick="answer(1, false)">Thaw at room temperature</div>
+      <div class="option" onclick="answer(2, false)">Reheat directly from the freezer</div>
+      <div class="option" onclick="answer(3, true)">Thaw safely in the fridge or microwave</div>
+    </div>
+    <div id="feedback"></div>
+    <div id="progress">Question 21 of 29</div>
+    <button id="nextBtn21" onclick="goToNext()" disabled>Next ➡️</button>
+  </div>
+
+  <!-- Question 22 -->
+  <div id="window23" class="window">
+    <h2>🧳 Why is team training crucial?</h2>
+    <div class="options">
+      <div class="option" onclick="answer(1, false)">To make them work faster</div>
+      <div class="option" onclick="answer(2, false)">To follow safety procedures</div>
+      <div class="option" onclick="answer(3, true)">To keep everyone safe and compliant</div>
+    </div>
+    <div id="feedback"></div>
+    <div id="progress">Question 22 of 29</div>
+    <button id="nextBtn22" onclick="goToNext()" disabled>Next ➡️</button>
+  </div>
+
+  <!-- Question 23 -->
+  <div id="window24" class="window">
+    <h2>🚦 How do you handle emergency situations?</h2>
+    <div class="options">
+      <div class="option" onclick="answer(1, false)">Ignore it</div>
+      <div class="option" onclick="answer(2, true)">Follow safety protocols and report</div>
+      <div class="option" onclick="answer(3, false)">Try to fix it yourself</div>
+    </div>
+    <div id="feedback"></div>
+    <div id="progress">Question 23 of 29</div>
+    <button id="nextBtn23" onclick="goToNext()" disabled>Next ➡️</button>
+  </div>
+
+  <!-- Question 24 -->
+  <div id="window25" class="window">
+    <h2>🚛 How should fragile items be handled?</h2>
+    <div class="options">
+      <div class="option" onclick="answer(1, false)">Stack them tightly</div>
+      <div class="option" onclick="answer(2, false)">Wrap and secure carefully</div>
+      <div class="option" onclick="answer(3, true)">Handle gently and secure properly</div>
+    </div>
+    <div id="feedback"></div>
+    <div id="progress">Question 24 of 29</div>
+    <button id="nextBtn24" onclick="goToNext()" disabled>Next ➡️</button>
+  </div>
+
+  <!-- Question 25 -->
+  <div id="window26" class="window">
+    <h2>🧼 How often should you sanitize equipment?</h2>
+    <div class="options">
+      <div class="option" onclick="answer(1, false)">Once a month</div>
+      <div class="option" onclick="answer(2, false)">After every use or daily</div>
+      <div class="option" onclick="answer(3, true)">Regularly, following procedures</div>
+    </div>
+    <div id="feedback"></div>
+    <div id="progress">Question 25 of 29</div>
+    <button id="nextBtn25" onclick="goToNext()" disabled>Next ➡️</button>
+  </div>
+
+  <!-- Question 26 -->
+  <div id="window27" class="window">
+    <h2>🌡️ Why is temperature control critical?</h2>
+    <div class="options">
+      <div class="option" onclick="answer(1, false)">It keeps food looking fresh</div>
+      <div class="option" onclick="answer(2, true)">To prevent bacteria growth</div>
+      <div class="option" onclick="answer(3, false)">It’s not that important</div>
+    </div>
+    <div id="feedback"></div>
+    <div id="progress">Question 26 of 29</div>
+    <button id="nextBtn26" onclick="goToNext()" disabled>Next ➡️</button>
+  </div>
+
+  <!-- Question 27 -->
+  <div id="window28" class="window">
+    <h2>🧴 How do you properly clean food contact surfaces?</h2>
+    <div class="options">
+      <div class="option" onclick="answer(1, false)">Wipe with a dry cloth</div>
+      <div class="option" onclick="answer(2, false)">Use soap, hot water, then sanitize</div>
+      <div class="option" onclick="answer(3, true)">Follow proper cleaning and sanitizing procedures</div>
+    </div>
+    <div id="feedback"></div>
+    <div id="progress">Question 27 of 29</div>
+    <button id="nextBtn27" onclick="goToNext()" disabled>Next ➡️</button>
+  </div>
+
+  <!-- Question 28 -->
+  <div id="window29" class="window">
+    <h2>🍽️ How should leftovers be stored?</h2>
+    <div class="options">
+      <div class="option" onclick="answer(1, false)">Leave them out</div>
+      <div class="option" onclick="answer(2, false)">In open containers</div>
+      <div class="option" onclick="answer(3, true)">In sealed containers in the fridge</div>
+    </div>
+    <div id="feedback"></div>
+    <div id="progress">Question 28 of 29</div>
+    <button id="nextBtn28" onclick="goToNext()" disabled>Next ➡️</button>
+  </div>
+
+  <!-- Final Question -->
+  <div id="window30" class="window">
+    <h2>🎉 You’ve completed all questions! Ready for the celebration? 🎈</h2>
+    <div class="celebration">🎊🎈🎉</div>
+    <p>Great job! Remember, safety and fun go hand in hand! 🌟</p>
+    <button onclick="finish()">🏅 Finish & Celebrate! 🏅</button>
+  </div>
+
+  <!-- Final message after finishing -->
+  <div id="finalMsg" style="text-align:center; margin-top:30px; font-size:1.4em;"></div>
 </div>
 
 <script>
   let currentQuestion = 0;
-  const totalQuestions = 5;
-  const answers = [];
+  const totalQuestions = 29;
+  const answers = Array(totalQuestions).fill(null);
 
   function goToNext() {
-    if (currentQuestion < totalQuestions) {
+    if (currentQuestion < totalQuestions - 1) {
       currentQuestion++;
       showQuestion(currentQuestion);
     }
@@ -180,33 +508,49 @@
     }
     document.getElementById('window' + (q + 1)).className = 'window';
 
-    // Reset feedback and buttons
+    // Reset feedback and disable next until answer selected
     document.getElementById('feedback').innerHTML = '';
-    document.getElementById('nextBtn' + q).disabled = true;
+    document.querySelectorAll('.option').forEach(opt => {
+      opt.style.borderColor = '';
+    });
+    document.getElementById('nextBtn' + (q+1)).disabled = true;
   }
 
   function answer(optionNumber, isCorrect) {
     answers[currentQuestion] = { option: optionNumber, correct: isCorrect };
-    // Show feedback
+    // Show friendly feedback
     const feedbackDiv = document.getElementById('feedback');
     if (isCorrect) {
-      feedbackDiv.innerHTML = '<span style="color: green;">✅ Correct! Well done!</span>';
+      feedbackDiv.innerHTML = '<span style="color: green;">✅ Correct! Keep it up! 🎉</span>';
     } else {
-      feedbackDiv.innerHTML = '<span style="color: red;">❌ Oops! Try again.</span>';
+      feedbackDiv.innerHTML = '<span style="color: red;">❌ Oops! Try again! 😊</span>';
     }
-    // Enable Next button after answer
-    document.getElementById('nextBtn' + currentQuestion).disabled = false;
+    // Highlight selected option border
+    document.querySelectorAll('.option').forEach(opt => {
+      opt.style.borderColor = '';
+    });
+    document.querySelectorAll('.option').forEach(opt => {
+      if (opt.innerHTML === getEmoji(optionNumber)) {
+        opt.style.borderColor = isCorrect ? 'green' : 'red';
+      }
+    });
+    // Enable next button
+    document.getElementById('nextBtn' + (currentQuestion+1)).disabled = false;
+  }
+
+  function getEmoji(optionNumber) {
+    const emojis = ['🔥', '🧊', '🌞', '🚚', '🔒', '📝', '🌡️', '🥡', '🍎', '🥤', '🍽️', '🌟', '🥡', '🧳', '🚦', '🚛', '🧳', '🌡️', '🧴', '🍏', '🥶', '🧳', '🚦', '🚚', '🧳', '🌟', '🧼', '🍽️', '🎉'];
+    return emojis[optionNumber - 1] || '';
   }
 
   function finish() {
     // Count correct answers
-    let score = 0;
-    answers.forEach(a => { if (a.correct) score++; });
-    document.querySelector('#finalMessage').innerHTML = `
-      🎉 You got ${score} out of ${totalQuestions} correct! 🎉<br>
+    let correctCount = answers.filter(a => a && a.correct).length;
+    document.getElementById('finalMsg').innerHTML = `
+      🎉 Congratulations! You answered ${correctCount} out of ${totalQuestions} questions correctly! 🎉<br>
       Keep practicing safety! 🚀
     `;
-    // Show final window
+    // Hide all question windows
     for (let i = 1; i <= totalQuestions + 1; i++) {
       document.getElementById('window' + i).className = 'window';
     }
