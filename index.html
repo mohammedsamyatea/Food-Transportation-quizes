@@ -3,20 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SafeFood Quiz Viewer</title>
+  <title>SafeFood Transport Quiz</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
       background: #f4f6f8;
       padding: 2rem;
       color: #333;
-    }
-    h1 {
-      color: #0078d4;
+      text-align: center;
     }
     .quiz-box {
       background: white;
-      padding: 1rem;
+      padding: 1.5rem;
       border-radius: 8px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
       max-width: 600px;
@@ -24,6 +22,7 @@
     }
     .question {
       font-weight: bold;
+      font-size: 1.2rem;
       margin-bottom: 1rem;
     }
     .options {
@@ -31,11 +30,18 @@
       padding: 0;
     }
     .options li {
-      margin-bottom: 0.5rem;
-      padding: 0.5rem;
+      margin: 0.5rem 0;
+      padding: 0.75rem;
       background: #e6f0fa;
       border-radius: 4px;
       cursor: pointer;
+      transition: background 0.3s;
+    }
+    .options li.correct {
+      background: #c8f7c5;
+    }
+    .options li.incorrect {
+      background: #f7c5c5;
     }
     .explanation {
       margin-top: 1rem;
@@ -44,7 +50,6 @@
     }
     .nav {
       margin-top: 2rem;
-      text-align: center;
     }
     button {
       background: #0078d4;
@@ -55,11 +60,16 @@
       border-radius: 4px;
       cursor: pointer;
     }
+    #score {
+      font-size: 1.2rem;
+      margin-top: 2rem;
+      color: #0078d4;
+    }
   </style>
 </head>
 <body>
 
-<h1>SafeFood Transport Quiz Viewer</h1>
+<h1>SafeFood Transport Quiz</h1>
 <div class="quiz-box">
   <div class="question" id="question"></div>
   <ul class="options" id="options"></ul>
@@ -69,10 +79,13 @@
   <button onclick="prevQuestion()">Previous</button>
   <button onclick="nextQuestion()">Next</button>
 </div>
+<div id="score"></div>
 
 <script>
   let quizzes = [];
   let current = 0;
+  let score = 0;
+  let answered = {};
 
   fetch('quizzes.json')
     .then(res => res.json())
@@ -86,25 +99,34 @@
     document.getElementById('question').textContent = `Q${q.id}: ${q.question}`;
     const optionsList = document.getElementById('options');
     optionsList.innerHTML = '';
+    document.getElementById('explanation').textContent = '';
+
     q.options.forEach((opt, i) => {
       const li = document.createElement('li');
       li.textContent = opt;
-      li.onclick = () => showAnswer(i === q.answer, q.explanation);
+      li.onclick = () => {
+        if (answered[current]) return;
+        answered[current] = true;
+        if (i === q.answer) {
+          li.classList.add('correct');
+          score++;
+        } else {
+          li.classList.add('incorrect');
+          optionsList.children[q.answer].classList.add('correct');
+        }
+        document.getElementById('explanation').textContent = q.explanation;
+        updateScore();
+      };
       optionsList.appendChild(li);
     });
-    document.getElementById('explanation').textContent = '';
-  }
-
-  function showAnswer(correct, explanation) {
-    document.getElementById('explanation').textContent = correct
-      ? `✅ Correct! ${explanation}`
-      : `❌ Not quite. ${explanation}`;
   }
 
   function nextQuestion() {
     if (current < quizzes.length - 1) {
       current++;
       showQuestion();
+    } else {
+      showFinalScore();
     }
   }
 
@@ -113,6 +135,19 @@
       current--;
       showQuestion();
     }
+  }
+
+  function updateScore() {
+    document.getElementById('score').textContent = `Score: ${score} / ${quizzes.length}`;
+  }
+
+  function showFinalScore() {
+    document.querySelector('.quiz-box').innerHTML = `
+      <h2>🎉 Quiz Completed!</h2>
+      <p>You scored ${score} out of ${quizzes.length}</p>
+      <p>Great job, ${score >= 25 ? 'you’re a food safety champion!' : 'keep practicing!'}</p>
+    `;
+    document.querySelector('.nav').style.display = 'none';
   }
 </script>
 
