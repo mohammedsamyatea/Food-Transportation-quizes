@@ -1,286 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Food Safety Transport Quiz</title>
-<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🚛 Food Safety Adventure – Transport Edition</title>
 <style>
-:root {
-  --primary-blue: #2B7A78;
-  --secondary-teal: #3AAFA9;
-  --accent-yellow: #FEFF9C;
-  --highlight-orange: #FF7E67;
-  --text-dark: #17252A;
-  --paper: #DEF2F1;
-}
-
-/* Reset & body */
-html, body { margin:0; padding:0; font-size:16px; font-family:'Comic Neue', sans-serif; background: var(--paper); color: var(--text-dark); min-height:100%; }
-body { display:flex; flex-direction:column; align-items:center; padding-bottom:100px; }
-
-/* Header */
-header {
-  width:100%;
-  background: linear-gradient(90deg, var(--primary-blue), var(--secondary-teal));
-  color:white;
-  text-align:center;
-  padding:1rem;
-  font-family:'Bangers', cursive; 
-  font-size:2rem;
-  position: sticky;
-  top:0;
-  z-index:10;
-  box-shadow:0 4px 8px rgba(0,0,0,0.2);
-  border-bottom-left-radius:20px;
-  border-bottom-right-radius:20px;
-}
-
-/* Container */
-.container {
-  max-width:800px;
-  width:95%;
-  margin:2rem auto;
-  padding:1.5rem;
-  background:white;
-  border-radius:16px;
-  box-shadow:0 6px 18px rgba(0,0,0,0.12);
-}
-
-/* Question */
-.question {
-  font-family:'Bangers', cursive;
-  font-size:1.5rem;
-  margin-bottom:1rem;
-}
-
-/* Options */
-.options { list-style:none; padding:0; margin:0; }
-.options li {
-  background:#f1f1f1;
-  margin:0.5rem 0;
-  padding:1rem 1.2rem;
-  border-radius:12px;
-  cursor:pointer;
-  border-left:6px solid var(--secondary-teal);
-  transition: transform 0.1s ease, box-shadow 0.2s ease;
-}
-.options li:hover { transform:scale(1.02); box-shadow:0 6px 14px rgba(0,0,0,0.12); }
-.options li.correct { background: #DFF6DD; border-left-color: #3AAFA9; }
-.options li.incorrect { background: #FFE6E6; border-left-color: #FF7E67; }
-
-/* Score */
-#score {
-  text-align:center;
-  margin-top:1rem;
-  font-weight:bold;
-  padding:0.5rem 1rem;
-  border-radius:10px;
-  background:#FEFF9C;
-  font-size:1rem;
-}
-
-/* Certificate */
-#certificate { display:none; text-align:center; margin-top:2rem; }
-#certificate .card {
-  background:white;
-  border-radius:20px;
-  padding:2rem;
-  box-shadow:0 12px 28px rgba(0,0,0,0.18);
-}
-#certificate .ribbon {
-  background: var(--highlight-orange);
-  color:white;
-  display:inline-block;
-  padding:0.5rem 1.2rem;
-  border-radius:12px;
-  font-family:'Bangers', cursive;
-  margin-bottom:1rem;
-}
-#certificate button {
-  margin-top:1rem;
-  background: var(--secondary-teal);
-  color:white;
-  border:none;
-  padding:0.7rem 1.5rem;
-  border-radius:50px;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-/* Navigation */
-.nav {
-  position:fixed;
-  bottom:0;
-  width:100%;
-  background: linear-gradient(90deg, var(--primary-blue), var(--secondary-teal));
-  padding:0.75rem;
-  text-align:center;
-  display:flex;
-  justify-content:center;
-  gap:0.5rem;
-  z-index:10;
-}
-.nav button {
-  background:white;
-  border:none;
-  padding:0.5rem 1.1rem;
-  border-radius:12px;
-  font-weight:bold;
-  cursor:pointer;
-  box-shadow:0 4px 8px rgba(0,0,0,0.1);
-}
-
-/* Modal */
-.modal {
-  display:none;
-  position:fixed;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  background:white;
-  padding:1.5rem;
-  border-radius:16px;
-  box-shadow:0 12px 28px rgba(0,0,0,0.25);
-  max-width:90%;
-  width:400px;
-  text-align:center;
-  z-index:100;
-}
-.modal h3 { font-family:'Bangers', cursive; font-size:1.5rem; margin-bottom:0.5rem; }
-.modal button { margin-top:1rem; background:var(--secondary-teal); color:white; border:none; padding:0.5rem 1rem; border-radius:12px; cursor:pointer; font-weight:bold; }
-
-/* Responsive */
-@media(max-width:480px){ .question { font-size:1.2rem; } .options li { font-size:0.9rem; padding:0.8rem; } }
+  /* ===== Basic Styles ===== */
+  body { font-family: 'Arial', sans-serif; margin:0; padding:0; background:#f5f5f5; }
+  .container { max-width: 800px; margin: 2rem auto; background:white; padding:1.5rem; border-radius:12px; box-shadow:0 6px 18px rgba(0,0,0,0.1); }
+  h1 { text-align:center; color:#2E4A3B; }
+  .question { font-size:1.2rem; margin-bottom:1rem; }
+  .options { list-style:none; padding:0; }
+  .options li { padding:0.75rem 1rem; margin:0.5rem 0; border-radius:10px; border:2px dashed #ccc; cursor:pointer; transition:0.2s; position:relative; }
+  .options li:hover { background:#e0f7fa; transform:scale(1.02); }
+  .options li.correct { background:#d4edda; border-color:#28a745; }
+  .options li.incorrect { background:#f8d7da; border-color:#dc3545; }
+  #score { text-align:center; font-weight:bold; margin-top:1rem; }
+  .nav { text-align:center; margin-top:1rem; }
+  .nav button { padding:0.6rem 1.2rem; margin:0 0.4rem; font-weight:bold; border:none; border-radius:10px; cursor:pointer; }
+  .nav button:hover { opacity:0.9; }
+  #certificate { display:none; text-align:center; padding:2rem; background:#fffbe6; border-radius:20px; box-shadow:0 10px 30px rgba(0,0,0,0.1); }
+  #certificate h2 { color:#2E4A3B; }
+  .modal { display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:white; padding:1rem 1.5rem; border-radius:12px; box-shadow:0 8px 20px rgba(0,0,0,0.2); max-width:400px; text-align:center; }
+  .modal button { margin-top:1rem; padding:0.5rem 1rem; border:none; border-radius:8px; background:#2E4A3B; color:white; cursor:pointer; }
 </style>
 </head>
 <body>
 
-<header>🚛 Food Safety Transport Quiz</header>
-
-<div class="container" id="quizBox">
+<div class="container">
+  <h1>🚛 Food Safety Adventure – Transport Edition</h1>
   <div class="question" id="question"></div>
   <ul class="options" id="options"></ul>
   <div id="score">Score: 0 / 0</div>
-</div>
-
-<div id="certificate">
-  <div class="card">
-    <div class="ribbon">🎉 Congratulations! 🎉</div>
-    <h2>Certificate of Completion</h2>
-    <p>This certifies that <strong id="userName">Participant</strong> has successfully completed</p>
-    <p><em>Food Safety Transport Training</em></p>
-    <p>Final Score: <strong id="finalScore">0/29</strong></p>
-    <button onclick="window.print()">🖨️ Print Certificate</button>
+  <div class="nav">
+    <button onclick="prevQuestion()">⬅️ Previous</button>
+    <button onclick="nextQuestion()">Next ➡️</button>
   </div>
 </div>
 
-<div class="nav">
-  <button onclick="prevQuestion()">⬅️ Previous</button>
-  <button onclick="nextQuestion()">➡️ Next</button>
+<div id="certificate">
+  <h2>🎓 Certificate of Completion</h2>
+  <p>This certifies that <strong>Participant</strong> has completed</p>
+  <p><em>Food Safety Adventure – Transport Edition</em></p>
+  <p>Final Score: <strong id="finalScore">0 / 0</strong></p>
+  <button onclick="window.print()">🖨️ Print Certificate</button>
 </div>
 
 <div class="modal" id="feedbackModal">
-  <h3>💡 Tip</h3>
   <p id="modalContent"></p>
   <button onclick="closeModal()">Continue</button>
 </div>
 
 <script>
 const quizzes = [
-  {question:"You’re prepping a refrigerated truck for delivery. What’s the most important factor to prevent spoilage and foodborne illness?", options:["Store everything at room temperature","Focus on packaging — wrap it tight","Control the temperature — chill, freeze, and dry right"], answer:2, explanation:"Chilled: 3°C to 5°C. Frozen: -18°C or below. Dry goods: cool, dry place. Temperature is your frontline defense."},
-  {question:"You’re customizing a delivery vehicle. What layout keeps food handling safe and efficient?", options:["Compact and flashy — save space","Spacious interior — room for loading, inspection, and airflow","Dazzling exterior — attract attention"], answer:1, explanation:"Room to load/unload = fewer delays. Inspection zones = compliance ready. Airflow = no moisture buildup."},
-  {question:"You’re inspecting truck doors before a long haul. What feature protects food best?", options:["Insect zapper — zap those bugs","Strong rubber seal — lock in freshness","Easy open-close — quick access"], answer:1, explanation:"Rubber seals keep cold air in, block pests, and maintain food quality."},
-  {question:"You’re loading raw and cooked foods into a delivery van. What’s the safest setup?", options:["Separate compartments — raw vs cooked","Pack it tight — maximize space","One cleaner for all — keep it simple"], answer:0, explanation:"Raw meat can contaminate cooked food. Dedicated compartments prevent cross-contamination."},
-  {question:"You’re choosing interior materials for your food transport vehicle. What’s the safest option?", options:["Stainless steel — smooth and waterproof","Rustic wood — charming but risky","Carpet — cozy but bacteria-friendly"], answer:0, explanation:"Stainless steel is easy to clean, waterproof, and helps control temperature."},
-  {question:"Walls and ceilings help keep things clean and safe. What finish?", options:["Light-colored, smooth, mold & moisture resistant","Dark, textured walls for a stylish vibe","Leave them bare — less material, less cleaning"], answer:0, explanation:"Light colors = easy to spot dirt. Smooth surfaces = easy to clean. Mold resistance = no hidden bacteria."},
-  {question:"You’re delivering hot meals on a motorcycle. What’s the safest way to transport them?", options:["Pack tightly in any container","Use sealed, thermally insulated containers","Speed is key — just get it there fast"], answer:1, explanation:"Insulated containers maintain safe temperatures. Sealed lids prevent spills and contamination."},
-  {question:"You’re inspecting the storage area of a food truck. What kind of lighting helps ensure food safety?", options:["Darkness — mysterious","Adequate lighting for inspection and safety","One super-bright bulb — blast the shadows"], answer:1, explanation:"Good lighting helps inspections, spot damage or spoilage, and prevents accidents."},
-  {question:"You’re installing plastic curtains in a refrigerated truck. What’s their main benefit?", options:["Adds style to your truck","Prevents contamination and helps maintain temperature","Improves fuel efficiency"], answer:1, explanation:"Acts as barrier against dust/insects. Keeps cold air in. Supports hygiene and temperature control."},
-  {question:"You’re setting up a record-keeping system for your delivery vehicle. Most important element?", options:["Daily driver notes","Detailed records of loading/unloading and malfunctions","Simple checklist of food items"], answer:1, explanation:"Tracks efficiency and delays, flags equipment issues, ensures temperature control."},
-  {question:"You’re delivering fresh bread. Are plastic boxes the best choice?", options:["Plastic boxes trap moisture","Plastic boxes protect bread from external elements","No packaging — fresh bread is best unwrapped"], answer:0, explanation:"Moisture buildup = soggy crust. Breathable alternatives are better."},
-  {question:"Unsold bread is coming back. How should you store it?", options:["Open bin","Tightly sealed container","Decorative basket"], answer:1, explanation:"Sealed containers protect from pests and airborne contaminants."},
-  {question:"Transporting frozen goods. Essential features?", options:["Loud alarm system","Refrigeration unit + external temperature gauge","Comfy driver seat"], answer:1, explanation:"Consistent cold = food safety. External gauge = real-time monitoring."},
-  {question:"Designing refrigerated compartment. Why insulate walls?", options:["Soundproofing","Minimize temperature fluctuations","Protect food from dents"], answer:1, explanation:"Insulation keeps cold air in, warm air out, reduces strain on cooling systems."},
-  {question:"Difference between refrigeration and AC?", options:["Same — cheaper","Refrigeration for distribution, AC for short trips","AC is best — cool and comfy"], answer:1, explanation:"Refrigeration = consistent cold. AC = comfort, not food-safe for long hauls."},
-  {question:"Loading chilled produce. How to arrange boxes?", options:["Pack tightly","Leave space for cold air","Stack heavier boxes on top"], answer:1, explanation:"Airflow = consistent cooling. Prevents spoilage."},
-  {question:"Transporting hot and cold meals. Safest setup?", options:["Pack together","Separate compartments with independent temperature control","One compartment + hot packs"], answer:1, explanation:"Prevents temperature crossover. Maintains safety."},
-  {question:"Delivering hot meals. Essential for thermal containers?", options:["Large & stackable","Thermally insulated with thermometers","Clear lids"], answer:1, explanation:"Keep food above 63°C. Thermometers for monitoring."},
-  {question:"Transporting fresh fish. Golden rule?", options:["Pack tightly","Use container only for fish","Mix all seafood"], answer:1, explanation:"Prevents cross-contamination. Dedicated containers = clean catch."},
-  {question:"Fish transport signage should include?", options:["Fun graphics","Stickers Arabic & English","Technical jargon"], answer:1, explanation:"Clear multilingual signage ensures smooth operations."},
-  {question:"Preservative box for fish. Features?", options:["One big compartment","Non-reactive + insulated + easy to clean","Decorative box"], answer:1, explanation:"Non-reactive materials, insulation, and cleanliness are key."},
-  {question:"Final touch for fish box temperature control?", options:["One powerful unit","Right-sized refrigeration + gauge","Just use ice"], answer:1, explanation:"Right-sized unit + external gauge = precise cooling."},
-  {question:"Packing fish. Method?", options:["Toss all together","Separate containers for each species","Fill with water"], answer:1, explanation:"Segregation = no stress or injuries."},
-  {question:"Final cooling layer for fish?", options:["Dry ice","Crushed ice (GSO 384)","Skip ice"], answer:1, explanation:"Crushed ice ensures even cooling and safety."},
-  {question:"Ensuring top-quality fish. Sourcing strategy?", options:["Buy from market & refreeze","Source directly from fishing boats","Don’t worry about origin"], answer:1, explanation:"Direct sourcing = minimal time, fresh, safe."},
-  {question:"Chilled meat transport. Optimal cooling?", options:["Insulated box inside & out","Just refrigeration unit","Large vents"], answer:0, explanation:"Insulation supports refrigeration efficiency and safety."},
-  {question:"Choosing carcass hangers for meat. Best material?", options:["Stainless steel","Plastic","Galvanized steel"], answer:0, explanation:"Stainless steel = hygienic, durable, safe."},
-  {question:"Monitoring meat temperature. Best setup?", options:["Manual checks","Cooling unit + external gauge","Rely on AC"], answer:1, explanation:"External gauge ensures real-time, safe monitoring."},
-  {question:"Loading meat cartons. Safest method?", options:["Place cartons on stands/bases","Stack on floor","Mix with other cargo"], answer:0, explanation:"Elevation = airflow & contamination prevention."}
+  // Level 1
+  {q:'🥗 Level 1: Storage Smarts\nYou’re prepping a refrigerated truck. Most important factor?', opts:['Store at room temp','Focus on packaging','Control temperature'], ans:2, tip:'✅ Correct: Control temperature (Chilled 3-5°C, Frozen -18°C, Dry goods cool/dry)'},
+  // Level 2
+  {q:'🥗 Level 2: Truck Layout Logic\nWhich layout keeps food safe & efficient?', opts:['Compact & flashy','Spacious interior','Dazzling exterior'], ans:1, tip:'✅ Correct: Spacious interior for airflow, inspection, and efficiency'},
+  // Level 3
+  {q:'🥗 Level 3: Seal the Deal\nInspecting truck doors. Which protects food best?', opts:['Insect zapper','Strong rubber seal','Easy open-close'], ans:1, tip:'✅ Correct: Strong rubber seal keeps cold air in & blocks pests'},
+  // Level 4
+  {q:'🥗 Level 4: Hygiene on the Move\nLoading raw & cooked foods. Safest setup?', opts:['Separate compartments','Pack tight','One cleaner for all'], ans:0, tip:'✅ Correct: Separate compartments prevent cross-contamination'},
+  // Level 5
+  {q:'🥗 Level 5: Interior Armor\nSafest interior materials for transport vehicle?', opts:['Stainless steel','Rustic wood','Carpet'], ans:0, tip:'✅ Correct: Stainless steel is smooth, waterproof, easy to clean'},
+  // Level 6
+  {q:'🥗 Level 6: Wall & Ceiling Wisdom\nWalls/ceiling to keep clean & safe?', opts:['Light-colored smooth surfaces','Dark textured walls','Bare walls'], ans:0, tip:'✅ Correct: Light/smooth/mold-resistant surfaces are easiest to clean'},
+  // Level 7
+  {q:'🥗 Level 7: Motorcycle Mission\nDeliver hot meals on motorcycle. Safest?', opts:['Pack tightly in any container','Sealed thermal containers','Speed is key'], ans:1, tip:'✅ Correct: Sealed, thermally insulated containers keep temperatures safe'},
+  // Level 8
+  {q:'🥗 Level 8: Light It Right\nInspect storage area lighting. Best?', opts:['Darkness','Adequate lighting','Super-bright bulb'], ans:1, tip:'✅ Correct: Adequate lighting helps inspections & spotting spoilage'},
+  // Level 9
+  {q:'🥗 Level 9: Curtain Call\nPlastic curtains in fridge truck. Main benefit?', opts:['Adds style','Prevents contamination & keeps temp','Improves fuel'], ans:1, tip:'✅ Correct: Curtains act as barrier & maintain temperature'},
+  // Level 10
+  {q:'🥗 Level 10: Record-Keeping Royalty\nMost important element in records?', opts:['Driver notes','Detailed logs','Simple checklist'], ans:1, tip:'✅ Correct: Detailed logs track loading, malfunctions, temperature'},
+  // Level 11
+  {q:'🍞 Level 11: The Bread Box Battle\nBest container for fresh bread?', opts:['Plastic traps moisture','Plastic protects','No packaging'], ans:0, tip:'✅ Correct: Paper/ventilated plastic helps freshness; plastic traps moisture'},
+  // Level 12
+  {q:'🍞 Level 12: Return Bin Rescue\nStoring unsold bread?', opts:['Open bin','Tightly sealed','Decorative basket'], ans:1, tip:'✅ Correct: Tightly sealed prevents contamination'},
+  // Level 13
+  {q:'❄️ Level 13: Chill Check\nTransport frozen goods. Essential features?', opts:['Loud alarm','Refrigeration + gauge','Comfy seat'], ans:1, tip:'✅ Correct: Cold + external gauge ensures safety'},
+  // Level 14
+  {q:'🥗 Level 14: Insulation Station\nWhy insulate refrigerated compartment?', opts:['Soundproofing','Minimize temperature fluctuations','Protect from dents'], ans:1, tip:'✅ Correct: Insulation maintains cold & efficiency'},
+  // Level 15
+  {q:'🥗 Level 15: Cool vs Cold\nDifference between refrigeration & AC?', opts:['Same','Refrigeration=distribution, AC=short trips','AC is best'], ans:1, tip:'✅ Correct: Refrigeration=food safety, AC=comfort only'},
+  // Level 16
+  {q:'🥗 Level 16: Chill Zone Logistics\nLoading chilled produce. Arrangement?', opts:['Pack tight','Leave space for airflow','Stack heavier on top'], ans:1, tip:'✅ Correct: Air circulation prevents spoilage'},
+  // Level 17
+  {q:'🥗 Level 17: Hot & Cold Harmony\nTransport hot & cold meals. Best setup?', opts:['Pack together','Separate compartments','One compartment with hot packs'], ans:1, tip:'✅ Correct: Separate compartments prevent temp crossover'},
+  // Level 18
+  {q:'🥗 Level 18: Hot Food Hero\nThermal container requirement for hot meals?', opts:['Large & stackable','Insulated + thermometer','Clear lids'], ans:1, tip:'✅ Correct: Insulated + thermometer keeps food >63°C'},
+  // Level 19
+  {q:'🐟 Level 19: Fishy Business\nDesign fish transport container. Golden rule?', opts:['Pack tightly','Dedicated container','Mix seafood'], ans:1, tip:'✅ Correct: Dedicated container prevents cross-contamination'},
+  // Level 20
+  {q:'🐟 Level 20: Signage That Speaks\nTop-tier fish transport signage?', opts:['Fun graphics','Arabic+English labels','Technical jargon'], ans:1, tip:'✅ Correct: Clear multilingual signage ensures safe operations'},
+  // Level 21
+  {q:'🐟 Level 21: Preservative Box Blueprint\nFeatures for fish transport box?', opts:['One big compartment','Non-reactive+insulated+cleanable','Decorative box'], ans:1, tip:'✅ Correct: Non-reactive, insulated, cleanable ensures freshness'},
+  // Level 22
+  {q:'❄️ Level 22: Chill Control\nFinal touch for temperature control?', opts:['One powerful unit','Sized refrigeration + gauge','Just ice'], ans:1, tip:'✅ Correct: Sized refrigeration + gauge for precision cooling'},
+  // Level 23
+  {q:'🐠 Level 23: Fish-Friendly Packing\nHow to pack fish?', opts:['Toss together','Separate containers by species','Fill with water'], ans:1, tip:'✅ Correct: Separate containers reduce stress & damage'},
+  // Level 24
+  {q:'🐟 Level 24: Ice It Right\nFinal cooling layer?', opts:['Dry ice','Crushed ice layered','Skip ice'], ans:1, tip:'✅ Correct: Crushed ice (GSO 384) ensures even cooling'},
+  // Level 25
+  {q:'🐟 Level 25: Source of Freshness\nEnsure top-quality fish?', opts:['Buy market & refreeze','Direct from boats','Ignore origin'], ans:1, tip:'✅ Correct: Direct sourcing ensures freshness & traceability'},
+  // Level 26
+  {q:'❄️ Level 26: Insulation Innovation\nChilled meat transport cooling?', opts:['Insulated box inside/outside','Just refrigeration','Large vents'], ans:0, tip:'✅ Correct: Insulation + refrigeration keeps meat fresh'},
+  // Level 27
+  {q:'🥩 Level 27: Hanger Hero\nBest carcass hanger material?', opts:['Stainless steel','Plastic','Galvanized steel'], ans:0, tip:'✅ Correct: Stainless steel is hygienic & durable'},
+  // Level 28
+  {q:'🌡️ Level 28: Temperature Tracker\nMonitoring meat temps during transport?', opts:['Manual checks','Cooling unit + gauge','Vehicle AC'], ans:1, tip:'✅ Correct: External gauge gives real-time safety monitoring'},
+  // Level 29
+  {q:'📦 Level 29: Carton Loading Logic\nSafest way to load meat cartons?', opts:['Steel stands / plastic bases','Stack on floor','Mix with other cargo'], ans:0, tip:'✅ Correct: Elevation ensures airflow & prevents contamination'}
 ];
 
 let current = 0;
 let score = 0;
-let answered = {};
 
-function showQuestion(){
+function showQuestion() {
   const q = quizzes[current];
-  document.getElementById('question').textContent = `Q${current+1}: ${q.question}`;
-  const optionsList = document.getElementById('options');
-  optionsList.innerHTML = '';
-  q.options.forEach((opt,i)=>{
+  const qDiv = document.getElementById('question');
+  const optsDiv = document.getElementById('options');
+  qDiv.innerText = q.q;
+  optsDiv.innerHTML = '';
+  q.opts.forEach((o,i)=>{
     const li = document.createElement('li');
-    li.textContent = opt;
-    li.onclick = ()=>checkAnswer(i);
-    if(answered[current]!==undefined){
-      if(i===q.answer) li.classList.add('correct');
-      if(i===answered[current] && i!==q.answer) li.classList.add('incorrect');
-    }
-    optionsList.appendChild(li);
+    li.innerText = o;
+    li.onclick = ()=>checkAnswer(i, li);
+    optsDiv.appendChild(li);
   });
+  document.getElementById('score').innerText = `Score: ${score} / ${quizzes.length}`;
+}
+
+function checkAnswer(i, li) {
+  const correct = quizzes[current].ans;
+  const modal = document.getElementById('feedbackModal');
+  const content = document.getElementById('modalContent');
+  if(i===correct){
+    li.classList.add('correct');
+    score++;
+  } else {
+    li.classList.add('incorrect');
+  }
+  content.innerText = quizzes[current].tip;
+  modal.style.display = 'block';
+  disableOptions();
   updateScore();
 }
 
-function checkAnswer(choice){
-  if(answered[current]!==undefined) return; // prevent multiple clicks
-  answered[current] = choice;
-  const q = quizzes[current];
-  if(choice===q.answer) score++;
-  showModal(q.explanation);
-  showQuestion();
+function disableOptions() {
+  const opts = document.querySelectorAll('#options li');
+  opts.forEach(li=>li.onclick=null);
 }
 
-function showModal(text){
-  const modal = document.getElementById('feedbackModal');
-  document.getElementById('modalContent').textContent = text;
-  modal.style.display='block';
-}
-
-function closeModal(){
+function closeModal() {
   document.getElementById('feedbackModal').style.display='none';
-  if(current===quizzes.length-1) showCertificate();
 }
 
-function nextQuestion(){
+function nextQuestion() {
   if(current<quizzes.length-1) current++;
+  else showCertificate();
   showQuestion();
 }
 
-function prevQuestion(){
+function prevQuestion() {
   if(current>0) current--;
   showQuestion();
 }
 
-function updateScore(){
-  document.getElementById('score').textContent = `Score: ${score} / ${quizzes.length}`;
+function updateScore() {
+  document.getElementById('score').innerText = `Score: ${score} / ${quizzes.length}`;
 }
 
-function showCertificate(){
-  document.getElementById('quizBox').style.display='none';
-  document.getElementById('certificate').style.display='block';
-  document.getElementById('finalScore').textContent = `${score}/${quizzes.length}`;
+function showCertificate() {
+  document.querySelector('.container').style.display='none';
+  const cert = document.getElementById('certificate');
+  cert.style.display='block';
+  document.getElementById('finalScore').innerText = `${score} / ${quizzes.length}`;
 }
 
+// Initialize
 showQuestion();
 </script>
 
