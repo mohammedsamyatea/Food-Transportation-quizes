@@ -3,53 +3,56 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Training Module: Food Transport Safety</title>
+<title>Fun Food Transport Safety Quiz</title>
 <style>
   body {
-    font-family: Arial, sans-serif;
-    background: #f7f7f7;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background: #ffe0b2;
     margin: 0;
     padding: 20px;
   }
-  .window {
-    display: none;
+  .container {
     max-width: 800px;
     margin: auto;
-    background: #fff;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+  .window {
+    display: none;
+    background: #fff3e0;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    text-align: center;
   }
   .active {
     display: block;
   }
   h1, h2 {
-    text-align: center;
+    font-size: 2em;
     margin-bottom: 20px;
+    color: #d84315;
   }
   p {
     font-size: 1.2em;
-    text-align: center;
+    margin-bottom: 30px;
   }
-  .navigation {
-    margin-top: 30px;
-    text-align: center;
-  }
+  /* Fun buttons */
   button {
-    background-color: #2E7D32;
-    color: #fff;
+    background: #ff7043;
+    color: white;
     border: none;
-    padding: 12px 24px;
+    padding: 15px 30px;
     margin: 10px;
-    border-radius: 8px;
-    font-size: 1em;
+    border-radius: 25px;
+    font-size: 1.2em;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background 0.3s, transform 0.2s;
   }
   button:hover {
-    background-color: #1b5e20;
+    background: #ef6c00;
+    transform: scale(1.05);
   }
-  /* Style for options in quizzes */
+
+  /* Options styling */
   .options {
     display: flex;
     justify-content: center;
@@ -60,195 +63,152 @@
   .option {
     font-size: 3em;
     padding: 20px;
-    border-radius: 15px;
-    background: #e0f7fa;
+    background: #ffe0b2;
+    border-radius: 50%;
     cursor: pointer;
-    transition: transform 0.2s, background 0.2s;
+    transition: all 0.3s;
+    border: 3px solid transparent;
   }
   .option:hover {
     transform: scale(1.1);
-    background: #b2ebf2;
+    border-color: #d84315;
+    background: #ffd180;
   }
-  .selected {
-    border: 3px solid #2E7D32;
-    background: #c8e6c9;
+  /* Feedback message styles */
+  #feedback {
+    font-size: 1.4em;
+    margin-top: 20px;
+    height: 50px; /* space for feedback */
   }
-  /* Visual emphasis for large symbols */
-  .symbol-large {
-    font-size: 4em;
-    text-align: center;
-    margin: 20px 0;
+  /* Progress indicator */
+  #progress {
+    margin-top: 15px;
+    font-weight: bold;
   }
 </style>
 </head>
 <body>
 
-<!-- Windows (divs) for each step -->
-<!-- For brevity, only a subset is shown. You can extend to 29 as needed. -->
+<div class="container">
 
-<div id="window1" class="window active">
-  <h1>🚚 Food Transport Safety</h1>
-  <p>Welcome to the training! Learn how to ensure safe and quality food transportation.</p>
-  <div class="navigation">
-    <button onclick="goToNext()">Start</button>
+  <!-- Welcome Screen -->
+  <div id="window1" class="window active">
+    <h1>🚀 Welcome to the Food Transport Safety Quiz! 🎉</h1>
+    <p>Let's learn and have fun! Ready to start?</p>
+    <button onclick="goToNext()">🎉 Let's Go! 🎉</button>
   </div>
-</div>
 
-<div id="window2" class="window">
-  <h2>🔒 Safety Importance</h2>
-  <p>Ensuring safety during transportation protects health and maintains food quality.</p>
-  <div class="navigation">
-    <button onclick="goToNext()">Next</button>
+  <!-- Question 1 -->
+  <div id="window2" class="window">
+    <h2>🧊 What's the best way to keep food cold during transport?</h2>
+    <div class="options">
+      <div class="option" onclick="answer(1, true)">🔥</div>
+      <div class="option" onclick="answer(2, false)">🧊</div>
+      <div class="option" onclick="answer(3, false)">🌞</div>
+    </div>
+    <div id="feedback"></div>
+    <div id="progress">Question 1 of 5</div>
+    <button onclick="goToNext()" disabled id="nextBtn1">Next</button>
   </div>
-</div>
 
-<div id="window3" class="window">
-  <h2>🧊 Temperature Control</h2>
-  <p>Keeping food at the right temperature prevents spoilage.</p>
-  <div class="symbol-large">🧊</div>
-  <div class="navigation">
-    <button onclick="goToNext()">Next</button>
+  <!-- Question 2 -->
+  <div id="window3" class="window">
+    <h2>🚚 How should you check your vehicle before starting?</h2>
+    <div class="options">
+      <div class="option" onclick="answer(1, false)">Ignore it</div>
+      <div class="option" onclick="answer(2, true)">Inspect for cleanliness and safety</div>
+      <div class="option" onclick="answer(3, false)">Just check the tires</div>
+    </div>
+    <div id="feedback"></div>
+    <div id="progress">Question 2 of 5</div>
+    <button onclick="goToNext()" disabled id="nextBtn2">Next</button>
   </div>
-</div>
 
-<div id="window4" class="window">
-  <h2>🚚 Vehicle Inspection</h2>
-  <p>Inspect the vehicle before loading food to ensure safety.</p>
-  <div class="symbol-large">🔍🚗</div>
-  <div class="navigation">
-    <button onclick="goToNext()">Next</button>
+  <!-- Question 3 -->
+  <div id="window4" class="window">
+    <h2>🔒 What's the safest way to secure food in the vehicle?</h2>
+    <div class="options">
+      <div class="option" onclick="answer(1, false)">Leave it loose</div>
+      <div class="option" onclick="answer(2, true)">Use straps and barriers</div>
+      <div class="option" onclick="answer(3, false)">Stack it without fixing</div>
+    </div>
+    <div id="feedback"></div>
+    <div id="progress">Question 3 of 5</div>
+    <button onclick="goToNext()" disabled id="nextBtn3">Next</button>
   </div>
-</div>
 
-<div id="window5" class="window">
-  <h2>🧽 Cleanliness</h2>
-  <p>Maintain cleanliness of vehicles to prevent contamination.</p>
-  <div class="symbol-large">🧼🚛</div>
-  <div class="navigation">
-    <button onclick="goToNext()">Next</button>
+  <!-- Question 4 -->
+  <div id="window5" class="window">
+    <h2>📝 Why is proper documentation important?</h2>
+    <div class="options">
+      <div class="option" onclick="answer(1, false)">For fun</div>
+      <div class="option" onclick="answer(2, true)">To ensure proper tracking and compliance</div>
+      <div class="option" onclick="answer(3, false)">It’s not important</div>
+    </div>
+    <div id="feedback"></div>
+    <div id="progress">Question 4 of 5</div>
+    <button onclick="goToNext()" disabled id="nextBtn4">Next</button>
   </div>
-</div>
 
-<div id="window6" class="window">
-  <h2>🔒 Securing Cargo</h2>
-  <p>Properly secure food items to avoid damage during transit.</p>
-  <div class="symbol-large">🔐</div>
-  <div class="navigation">
-    <button onclick="goToNext()">Next</button>
+  <!-- Question 5 (Final) -->
+  <div id="window6" class="window">
+    <h2>🎉 Congratulations! You completed the quiz!</h2>
+    <p>Great job! Remember, safety is fun and important!</p>
+    <div class="symbol-large">🏆</div>
+    <button onclick="finish()">🎓 Finish & Get Your Certificate 🎓</button>
   </div>
-</div>
 
-<div id="window7" class="window">
-  <h2>📝 Documentation</h2>
-  <p>Fill out all required documents accurately.</p>
-  <div class="symbol-large">📝</div>
-  <div class="navigation">
-    <button onclick="goToNext()">Next</button>
-  </div>
-</div>
-
-<div id="window8" class="window">
-  <h2>🛣️ Route Planning</h2>
-  <p>Plan routes to avoid delays and ensure safety.</p>
-  <div class="symbol-large">🗺️</div>
-  <div class="navigation">
-    <button onclick="goToNext()">Next</button>
-  </div>
-</div>
-
-<div id="window9" class="window">
-  <h2>🚦 Driving Safety</h2>
-  <p>Drive carefully and follow traffic rules.</p>
-  <div class="symbol-large">🚗🛑</div>
-  <div class="navigation">
-    <button onclick="goToNext()">Next</button>
-  </div>
-</div>
-
-<div id="window10" class="window">
-  <h2>🧪 Quality Checks</h2>
-  <p>Perform quality checks during loading and unloading.</p>
-  <div class="symbol-large">🧪</div>
-  <div class="navigation">
-    <button onclick="goToNext()">Next</button>
-  </div>
-</div>
-
-<!-- Continue with similar structure for windows 11 to 29, covering topics like: -->
-
-<!-- Example for quiz window -->
-<div id="window11" class="window">
-  <h2>📝 Quiz: Temperature Control</h2>
-  <p>Choose the symbol that indicates proper temperature control:</p>
-  <div class="options">
-    <div class="option" onclick="selectAnswer(1)">🔥</div>
-    <div class="option" onclick="selectAnswer(2)">🧊</div>
-    <div class="option" onclick="selectAnswer(3)">🌞</div>
-  </div>
-  <div class="navigation">
-    <button onclick="checkAnswer()">Submit</button>
-  </div>
-</div>
-
-<!-- Final Window -->
-<div id="window29" class="window">
-  <h2>🎉 Congratulations!</h2>
-  <p>You have completed the entire training module.</p>
-  <div class="symbol-large">🏆</div>
-  <div class="navigation">
-    <button onclick="finishTraining()">Finish & Download Certificate</button>
-  </div>
+  <!-- Feedback message -->
+  <div id="finalMessage" style="text-align:center; margin-top:20px; font-size:1.2em;"></div>
 </div>
 
 <script>
-  let currentWindow = 1;
-  const totalWindows = 29;
-
-  function showWindow(id) {
-    for (let i = 1; i <= totalWindows; i++) {
-      document.getElementById('window' + i).className = 'window';
-    }
-    document.getElementById('window' + id).className = 'window active';
-    currentWindow = id;
-  }
+  let currentQuestion = 0;
+  const totalQuestions = 5;
+  const answers = [];
 
   function goToNext() {
-    if (currentWindow < totalWindows) {
-      showWindow(currentWindow + 1);
+    if (currentQuestion < totalQuestions) {
+      currentQuestion++;
+      showQuestion(currentQuestion);
     }
   }
 
-  function goToWindow(id) {
-    if (id >=1 && id <= totalWindows) {
-      showWindow(id);
+  function showQuestion(q) {
+    for (let i = 1; i <= totalQuestions + 1; i++) {
+      document.getElementById('window' + i).className = 'window';
     }
+    document.getElementById('window' + (q + 1)).className = 'window';
+
+    // Reset feedback and buttons
+    document.getElementById('feedback').innerHTML = '';
+    document.getElementById('nextBtn' + q).disabled = true;
   }
 
-  function finishTraining() {
-    alert('Training completed! Download your certificate.');
-    // Implement download logic or redirect
-  }
-
-  // Example answer selection
-  let selectedAnswer = null;
-  function selectAnswer(optionIndex) {
-    selectedAnswer = optionIndex;
-    // Highlight selection
-    document.querySelectorAll('.option').forEach((el, index) => {
-      if (index + 1 === optionIndex) {
-        el.classList.add('selected');
-      } else {
-        el.classList.remove('selected');
-      }
-    });
-  }
-
-  function checkAnswer() {
-    if (selectedAnswer !== null) {
-      alert(`You selected option ${selectedAnswer}`);
-      goToNext();
+  function answer(optionNumber, isCorrect) {
+    answers[currentQuestion] = { option: optionNumber, correct: isCorrect };
+    // Show feedback
+    const feedbackDiv = document.getElementById('feedback');
+    if (isCorrect) {
+      feedbackDiv.innerHTML = '<span style="color: green;">✅ Correct! Well done!</span>';
     } else {
-      alert('Please select an answer.');
+      feedbackDiv.innerHTML = '<span style="color: red;">❌ Oops! Try again.</span>';
+    }
+    // Enable Next button after answer
+    document.getElementById('nextBtn' + currentQuestion).disabled = false;
+  }
+
+  function finish() {
+    // Count correct answers
+    let score = 0;
+    answers.forEach(a => { if (a.correct) score++; });
+    document.querySelector('#finalMessage').innerHTML = `
+      🎉 You got ${score} out of ${totalQuestions} correct! 🎉<br>
+      Keep practicing safety! 🚀
+    `;
+    // Show final window
+    for (let i = 1; i <= totalQuestions + 1; i++) {
+      document.getElementById('window' + i).className = 'window';
     }
   }
 </script>
