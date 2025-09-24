@@ -7,22 +7,33 @@
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: #f4f6f8;
-      padding: 2rem;
+      background: #f9fbfc;
+      margin: 0;
+      padding: 0;
       color: #333;
+    }
+    header {
+      background: #0078d4;
+      color: white;
+      padding: 1rem;
       text-align: center;
     }
-    .quiz-box {
+    header img {
+      height: 50px;
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+    .container {
+      max-width: 700px;
+      margin: 2rem auto;
+      padding: 1rem;
       background: white;
-      padding: 1.5rem;
       border-radius: 8px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      max-width: 600px;
-      margin: auto;
     }
     .question {
-      font-weight: bold;
       font-size: 1.2rem;
+      font-weight: bold;
       margin-bottom: 1rem;
     }
     .options {
@@ -30,18 +41,18 @@
       padding: 0;
     }
     .options li {
+      background: #e6f0fa;
       margin: 0.5rem 0;
       padding: 0.75rem;
-      background: #e6f0fa;
       border-radius: 4px;
       cursor: pointer;
       transition: background 0.3s;
     }
     .options li.correct {
-      background: #c8f7c5;
+      background: #d4edda;
     }
     .options li.incorrect {
-      background: #f7c5c5;
+      background: #f8d7da;
     }
     .explanation {
       margin-top: 1rem;
@@ -50,6 +61,7 @@
     }
     .nav {
       margin-top: 2rem;
+      text-align: center;
     }
     button {
       background: #0078d4;
@@ -61,25 +73,49 @@
       cursor: pointer;
     }
     #score {
-      font-size: 1.2rem;
-      margin-top: 2rem;
+      margin-top: 1rem;
+      font-weight: bold;
       color: #0078d4;
+      text-align: center;
+    }
+    #certificate {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+    }
+    #certificate h2 {
+      color: #0078d4;
+    }
+    #certificate button {
+      margin-top: 1rem;
     }
   </style>
 </head>
 <body>
 
-<h1>SafeFood Transport Quiz</h1>
-<div class="quiz-box">
+<header>
+  <img src="logo-placeholder.png" alt="Logo" />
+  <span>SafeFood Transport Training</span>
+</header>
+
+<div class="container" id="quizBox">
   <div class="question" id="question"></div>
   <ul class="options" id="options"></ul>
   <div class="explanation" id="explanation"></div>
+  <div class="nav">
+    <button onclick="prevQuestion()">Previous</button>
+    <button onclick="nextQuestion()">Next</button>
+  </div>
+  <div id="score"></div>
 </div>
-<div class="nav">
-  <button onclick="prevQuestion()">Previous</button>
-  <button onclick="nextQuestion()">Next</button>
+
+<div id="certificate">
+  <h2>🎓 Certificate of Completion</h2>
+  <p>This certifies that <strong id="userName">Mohammed</strong> has successfully completed</p>
+  <p><em>SafeFood Transport Safety Training</em></p>
+  <p>Final Score: <strong id="finalScore">0/0</strong></p>
+  <button onclick="window.print()">🖨️ Print Certificate</button>
 </div>
-<div id="score"></div>
 
 <script>
   let quizzes = [];
@@ -126,7 +162,7 @@
       current++;
       showQuestion();
     } else {
-      showFinalScore();
+      showCertificate();
     }
   }
 
@@ -141,13 +177,10 @@
     document.getElementById('score').textContent = `Score: ${score} / ${quizzes.length}`;
   }
 
-  function showFinalScore() {
-    document.querySelector('.quiz-box').innerHTML = `
-      <h2>🎉 Quiz Completed!</h2>
-      <p>You scored ${score} out of ${quizzes.length}</p>
-      <p>Great job, ${score >= 25 ? 'you’re a food safety champion!' : 'keep practicing!'}</p>
-    `;
-    document.querySelector('.nav').style.display = 'none';
+  function showCertificate() {
+    document.getElementById('quizBox').style.display = 'none';
+    document.getElementById('finalScore').textContent = `${score} / ${quizzes.length}`;
+    document.getElementById('certificate').style.display = 'block';
   }
 </script>
 
