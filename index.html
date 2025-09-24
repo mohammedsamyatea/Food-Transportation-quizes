@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SafeFood Transport Quiz – Food Business Edition</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --clown-red: #F57C00; /* orange */
+      --clown-yellow: #FFE082; /* warm yellow */
+      --clown-blue: #26A69A; /* teal */
+      --clown-green: #43A047; /* food green */
+      --clown-purple: #8D6E63; /* cocoa/brown */
+      --ink: #3b2d2f;
+      --paper: #fffaf3;
+    }
+
+    html, body { height: 100%; }
+    html { font-size: 140%; }
+    body {
+      font-family: 'Comic Neue', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      margin: 0;
+      padding-bottom: 90px;
+      color: var(--ink);
+      background:
+        repeating-linear-gradient(
+          45deg,
+          #fff 0 20px,
+          #ffe9e9 20px 40px
+        ),
+        radial-gradient(circle at 10% 10%, #fff8, #fff0),
+        linear-gradient(120deg, #fff 0%, #fff 100%);
+      background-attachment: fixed;
+    }
+
+    /* Festive circus banner */
+    header {
+      background:
+        linear-gradient(90deg, var(--clown-red), var(--clown-yellow), var(--clown-green), var(--clown-blue), var(--clown-purple));
+      background-size: 300% 100%;
+      animation: ribbon 12s linear infinite;
+      color: white;
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+      clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%);
+    }
+    header img { height: 56px; filter: drop-shadow(0 3px 0 rgba(0,0,0,0.2)); }
+    header h1 {
+      flex-grow: 1;
+      text-align: center;
+      margin: 0;
+      font-family: 'Bangers', cursive;
+      font-size: 50px;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 0 #0004, 0 4px 12px rgba(0,0,0,0.35);
+    }
+    @keyframes ribbon { to { background-position: 300% 0; } }
+
+    .container {
+      max-width: 820px;
+      margin: 2rem auto;
+      padding: 1.25rem;
+      background: var(--paper);
+      border-radius: 16px;
+      box-shadow:
+        0 1px 0 #00000008,
+        0 6px 14px rgba(0,0,0,0.10),
+        0 18px 40px rgba(0,0,0,0.08);
+      border: 6px solid transparent;
+      background-image:
+        linear-gradient(var(--paper), var(--paper)),
+        linear-gradient(135deg, var(--clown-red), var(--clown-yellow), var(--clown-green), var(--clown-blue), var(--clown-purple));
+      background-origin: border-box;
+      background-clip: padding-box, border-box;
+    }
+
+    /* Per-category theme ring for the whole question box */
+    #quizBox.qtheme-cool { box-shadow: 0 0 0 6px #1e88e533 inset, 0 1px 0 #00000008, 0 6px 14px rgba(0,0,0,0.10), 0 18px 40px rgba(0,0,0,0.08); }
+    #quizBox.qtheme-clean { box-shadow: 0 0 0 6px #00acc133 inset, 0 1px 0 #00000008, 0 6px 14px rgba(0,0,0,0.10), 0 18px 40px rgba(0,0,0,0.08); }
+    #quizBox.qtheme-transport { box-shadow: 0 0 0 6px #43A04733 inset, 0 1px 0 #00000008, 0 6px 14px rgba(0,0,0,0.10), 0 18px 40px rgba(0,0,0,0.08); }
+    #quizBox.qtheme-pack { box-shadow: 0 0 0 6px #8D6E6333 inset, 0 1px 0 #00000008, 0 6px 14px rgba(0,0,0,0.10), 0 18px 40px rgba(0,0,0,0.08); }
+    #quizBox.qtheme-label { box-shadow: 0 0 0 6px #F57C0033 inset, 0 1px 0 #00000008, 0 6px 14px rgba(0,0,0,0.10), 0 18px 40px rgba(0,0,0,0.08); }
+
+    /* Subtle background gradients per category */
+    #quizBox.qtheme-cool {
+      background-image:
+        linear-gradient(180deg, #e3f2fd, var(--paper)),
+        linear-gradient(135deg, var(--clown-red), var(--clown-yellow), var(--clown-green), var(--clown-blue), var(--clown-purple));
+    }
+    #quizBox.qtheme-clean {
+      background-image:
+        linear-gradient(180deg, #e0f7fa, var(--paper)),
+        linear-gradient(135deg, var(--clown-red), var(--clown-yellow), var(--clown-green), var(--clown-blue), var(--clown-purple));
+    }
+    #quizBox.qtheme-transport {
+      background-image:
+        linear-gradient(180deg, #e8f5e9, var(--paper)),
+        linear-gradient(135deg, var(--clown-red), var(--clown-yellow), var(--clown-green), var(--clown-blue), var(--clown-purple));
+    }
+    #quizBox.qtheme-pack {
+      background-image:
+        linear-gradient(180deg, #f3e5f5, var(--paper)),
+        linear-gradient(135deg, var(--clown-red), var(--clown-yellow), var(--clown-green), var(--clown-blue), var(--clown-purple));
+    }
+    #quizBox.qtheme-label {
+      background-image:
+        linear-gradient(180deg, #fff3e0, var(--paper)),
+        linear-gradient(135deg, var(--clown-red), var(--clown-yellow), var(--clown-green), var(--clown-blue), var(--clown-purple));
+    }
+
+    .question {
+      font-family: 'Bangers', cursive;
+      font-size: 36px;
+      color: #1e1e1e;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .question::before { content: ''; }
+    .qicon { font-size: 1.4em; line-height: 1; margin-right: 8px; }
+    .qicon.cool { color: #1e88e5; }
+    .qicon.clean { color: #00acc1; }
+    .qicon.transport { color: #43A047; }
+    .qicon.pack { color: #8D6E63; }
+    .qicon.label { color: #F57C00; }
+
+    .qbadge {
+      display: inline-block;
+      margin-right: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-family: 'Comic Neue', sans-serif;
+      font-weight: 700;
+      font-size: 0.65em;
+      vertical-align: middle;
+      border: 2px solid #00000012;
+      background: #fff;
+    }
+    .qbadge.cool { background: #bbdefb; color: #0d47a1; }
+    .qbadge.clean { background: #b2ebf2; color: #006064; }
+    .qbadge.transport { background: #c8e6c9; color: #1b5e20; }
+    .qbadge.pack { background: #e1bee7; color: #4a148c; }
+    .qbadge.label { background: #ffe0b2; color: #e65100; }
+
+    .options { list-style: none; padding: 0; margin: 0; }
+    .options li {
+      position: relative;
+      background: #ffffff;
+      margin: 0.65rem 0;
+      padding: 0.9rem 1.1rem 0.9rem 3.25rem;
+      border-radius: 14px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: transform 0.12s ease, box-shadow 0.2s ease;
+      box-shadow: 0 2px 0 #00000010, 0 10px 18px rgba(0,0,0,0.06);
+      border: 2px dashed #ffb3b3;
+    }
+    .options li:hover { transform: translateY(-1px) scale(1.01); box-shadow: 0 6px 18px rgba(0,0,0,0.12); }
+    .options li::before {
+      content: '🥗';
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 31px;
+    }
+    .options li.correct {
+      background: linear-gradient(90deg, #E9F7EF, #f4fff9);
+      border-color: var(--clown-green);
+      box-shadow: 0 0 0 3px #43A04755 inset, 0 10px 22px rgba(67, 160, 71, 0.25);
+      color: #1b5e20;
+      animation: tada 700ms ease both;
+    }
+    .options li.incorrect {
+      background: linear-gradient(90deg, #FFF1F1, #fff6f6);
+      border-color: #ffb4b4;
+      box-shadow: 0 0 0 3px #ffb4b455 inset, 0 10px 22px rgba(255, 59, 59, 0.18);
+      animation: wobble 600ms ease both;
+    }
+
+    #score {
+      margin-top: 1rem;
+      font-weight: 700;
+      color: #1d3b2f;
+      text-align: center;
+      background: linear-gradient(90deg, #fff, #f9f9f9);
+      border-radius: 10px;
+      padding: 8px 12px;
+      border: 2px solid #e8e8e8;
+      display: inline-block;
+      min-width: 220px;
+      font-size: 1em;
+    }
+
+    #certificate {
+      display: none;
+      text-align: center;
+      padding: 2rem 1.2rem 3rem;
+    }
+    #certificate .card {
+      margin: 0 auto;
+      max-width: 720px;
+      background: #fffef6;
+      border-radius: 20px;
+      padding: 2rem 1.5rem;
+      border: 10px solid transparent;
+      background-image:
+        linear-gradient(#fffef6, #fffef6),
+        repeating-linear-gradient(45deg, var(--clown-red) 0 16px, var(--clown-yellow) 16px 32px, var(--clown-blue) 32px 48px, var(--clown-green) 48px 64px, var(--clown-purple) 64px 80px);
+      background-origin: border-box;
+      background-clip: padding-box, border-box;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+      position: relative;
+    }
+    #certificate .ribbon {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--clown-red);
+      color: #fff;
+      padding: 6px 16px;
+      border-radius: 8px;
+      font-family: 'Bangers', cursive;
+      letter-spacing: 1px;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+    }
+    #certificate h2 {
+      color: #274b3b;
+      font-size: 28px;
+      font-family: 'Bangers', cursive;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+    #certificate button {
+      margin-top: 1rem;
+      background: linear-gradient(90deg, var(--clown-yellow), var(--clown-green));
+      color: #1f2b2a;
+      border: none;
+      padding: 0.65rem 1.25rem;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 800;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    }
+
+    .nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(90deg, var(--clown-purple), var(--clown-blue));
+      padding: 0.75rem;
+      text-align: center;
+      z-index: 10;
+      box-shadow: 0 -10px 20px rgba(0,0,0,0.1);
+    }
+    .nav button {
+      background: #fff;
+      color: #2E4A3B;
+      border: 3px solid #00000014;
+      padding: 0.6rem 1.1rem;
+      margin: 0 0.4rem;
+      border-radius: 14px;
+      cursor: pointer;
+      font-weight: 900;
+      font-family: 'Comic Neue', sans-serif;
+      font-size: 1em;
+      box-shadow: 0 3px 0 #00000022, 0 10px 16px rgba(0,0,0,0.12);
+      transition: transform .08s ease;
+    }
+    .nav button:hover { transform: translateY(-1px); }
+    .nav button:active { transform: translateY(2px); }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #fff;
+      border: 6px solid transparent;
+      border-radius: 16px;
+      padding: 1rem;
+      max-width: 460px;
+      width: 90%;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      z-index: 200;
+      text-align: center;
+      background-image:
+        linear-gradient(#fff, #fff),
+        linear-gradient(135deg, var(--clown-yellow), var(--clown-red));
+      background-origin: border-box;
+      background-clip: padding-box, border-box;
+    }
+    .modal h3 { margin-top: 0; color: #2E4A3B; font-family: 'Bangers', cursive; font-size: 34px; }
+    .modal button {
+      margin-top: 0.75rem;
+      background: linear-gradient(90deg, var(--clown-blue), var(--clown-green));
+      color: #0d2a22;
+      border: none;
+      padding: 0.55rem 1.1rem;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 800;
+    }
+
+    /* Certificate/Print adjustments */
+    body.certificate-mode header img { height: 28px; }
+    body.certificate-mode .nav { display: none; }
+    @media print {
+      @page { size: A4 landscape; margin: 10mm; }
+      body { background: #fff !important; }
+      header { box-shadow: none; }
+      header img { height: 24px !important; }
+      .nav, #score { display: none !important; }
+      #certificate { display: block !important; }
+      #quizBox, .modal { display: none !important; }
+      #certificate .card { max-width: 100%; box-shadow: none; border-width: 6px; }
+    }
+
+    /* Animations */
+    @keyframes wobble {
+      0%, 100% { transform: translateX(0); }
+      15% { transform: translateX(-6px) rotate(-1deg); }
+      30% { transform: translateX(5px) rotate(1deg); }
+      45% { transform: translateX(-4px) rotate(-1deg); }
+      60% { transform: translateX(3px) rotate(1deg); }
+      75% { transform: translateX(-2px) rotate(-1deg); }
+    }
+    @keyframes tada {
+      0% { transform: scale3d(1, 1, 1); }
+      10%, 20% { transform: scale3d(0.95, 0.95, 0.95) rotate(-2deg); }
+      30%, 50%, 70%, 90% { transform: scale3d(1.05, 1.05, 1.05) rotate(2deg); }
+      40%, 60%, 80% { transform: scale3d(1.05, 1.05, 1.05) rotate(-2deg); }
+      100% { transform: scale3d(1, 1, 1); }
+    }
+
+    /* Confetti pieces */
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 14px;
+      top: -20px;
+      border-radius: 2px;
+      opacity: 0.95;
+      pointer-events: none;
+      z-index: 9999;
+      animation: fall linear forwards;
+    }
+    @keyframes fall {
+      to { transform: translateY(110vh) rotate(720deg); }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <img src="logo-left.png" alt="Left Logo" />
+  <h1>🍽️ SafeFood Transport Training – Food Business Edition</h1>
+  <img src="logo-right.png" alt="Right Logo" />
+  </header>
+
+<div class="container" id="quizBox">
+  <div class="question" id="question"></div>
+  <ul class="options" id="options"></ul>
+  <div style="text-align:center"><div id="score">📊 Score: 0 / 0</div></div>
+  </div>
+
+<div id="certificate">
+  <div class="card">
+    <div class="ribbon">🎉 Congratulations! 🎉</div>
+    <h2>🎓 Certificate of Completion</h2>
+    <p>This certifies that <strong id="userName">Mohammed</strong> has successfully completed</p>
+    <p><em>SafeFood Transport Safety Training</em></p>
+    <p>Final Score: <strong id="finalScore">0/0</strong></p>
+    <div id="categoryStats" style="margin-top:12px"></div>
+    <button onclick="window.print()">🖨️ Print Your Certificate</button>
+  </div>
+  </div>
+
+<div class="nav">
+  <button onclick="prevQuestion()">⬅️ Previous</button>
+  <button onclick="nextQuestion()">➡️ Next</button>
+  </div>
+
+<div class="modal" id="feedbackModal">
+  <h3>💡 Tip</h3>
+  <p id="modalContent"></p>
+  <button onclick="closeModal()">Continue</button>
+  </div>
+<script>
+  let quizzes = [];
+  let current = 0;
+  let score = 0;
+  let answered = {};
+  let answeredCorrect = {};
+
+  function seedFallbackQuizzes() {
+    return [
+      {
+        id: 1,
+        question: 'What is the safest temperature for transporting perishable food?',
+        options: ['0-5°C', '10-15°C', '20-25°C', 'Any temperature'],
+        answer: 0,
+        explanation: 'Cold chain food should generally be kept at 0-5°C to prevent bacterial growth.'
+      },
+      {
+        id: 2,
+        question: 'Which practice reduces cross-contamination during transport?',
+        options: ['Mix raw and cooked foods', 'Separate sealed containers', 'No labels needed', 'Use same tools'],
+        answer: 1,
+        explanation: 'Separate sealed containers and labeling help avoid cross-contamination.'
+      },
+      {
+        id: 3,
+        question: 'What should be done before loading food?',
+        options: ['Ignore vehicle cleanliness', 'Sanitize vehicle surfaces', 'Turn off refrigeration', 'Skip checks'],
+        answer: 1,
+        explanation: 'Sanitizing reduces contamination risk; ensure refrigeration is functional before loading.'
+      }
+    ];
+  }
+
+  fetch('quizzes.json')
+    .then(res => res.ok ? res.json() : Promise.reject())
+    .then(data => {
+      quizzes = data.quizzes || seedFallbackQuizzes();
+      showQuestion();
+      updateScore();
+    })
+    .catch(() => {
+      quizzes = seedFallbackQuizzes();
+      showQuestion();
+      updateScore();
+    });
+
+  function showQuestion() {
+    const q = quizzes[current];
+    if (!q) return;
+    const manualType = normalizeType(q.category);
+    const type = manualType || detectType(q.question);
+    const icon = iconForType(type) || detectIcon(q.question);
+    const qEl = document.getElementById('question');
+    const badge = type ? `<span class="qbadge ${type}">${type}</span>` : '';
+    qEl.innerHTML = `${badge}<span class="qicon ${type}">${icon}</span> Q${q.id}: ${q.question}`;
+    const box = document.getElementById('quizBox');
+    box.classList.remove('qtheme-cool','qtheme-clean','qtheme-transport','qtheme-pack','qtheme-label');
+    if (type) box.classList.add(`qtheme-${type}`);
+    const optionsList = document.getElementById('options');
+    optionsList.innerHTML = '';
+
+    q.options.forEach((opt, i) => {
+      const li = document.createElement('li');
+      li.textContent = opt;
+      li.onclick = () => {
+        if (answered[current]) return;
+        answered[current] = true;
+        if (i === q.answer) {
+          li.classList.add('correct');
+          score++;
+          burstConfetti();
+          answeredCorrect[current] = true;
+        } else {
+          li.classList.add('incorrect');
+          if (optionsList.children[q.answer]) {
+            optionsList.children[q.answer].classList.add('correct');
+          }
+          answeredCorrect[current] = false;
+        }
+        updateScore();
+        // Show tip immediately after choosing
+        const tipText = `✅ Correct answer: ${q.options[q.answer]}\n💬 ${q.explanation}`;
+        document.getElementById('modalContent').textContent = tipText;
+        document.getElementById('feedbackModal').style.display = 'block';
+      };
+      optionsList.appendChild(li);
+    });
+  }
+
+  function detectType(text) {
+    const t = (text || '').toLowerCase();
+    if (/(temp|cold|chill|cool|°|c|cold chain|freeze|refriger)/.test(t)) return 'cool';
+    if (/(sanitize|clean|hygiene|wash|disinfect|cleanliness)/.test(t)) return 'clean';
+    if (/(transport|truck|deliver|vehicle|load|unload|route)/.test(t)) return 'transport';
+    if (/(pack|seal|container|package|wrap|box)/.test(t)) return 'pack';
+    if (/(label|expiry|date|trace|tag)/.test(t)) return 'label';
+    return '';
+  }
+
+  function detectIcon(text) {
+    const t = (text || '').toLowerCase();
+    if (/(temp|cold|chill|cool|°|c|cold chain|freeze|refriger)/.test(t)) return '🧊';
+    if (/(sanitize|clean|hygiene|wash|disinfect|sanitize|cleanliness)/.test(t)) return '🧼';
+    if (/(transport|truck|deliver|vehicle|load|unload|route)/.test(t)) return '🚚';
+    if (/(pack|seal|container|package|wrap|box)/.test(t)) return '🥡';
+    if (/(label|expiry|date|trace|tag)/.test(t)) return '🏷️';
+    return '🍽️';
+  }
+
+  function normalizeType(category) {
+    if (!category) return '';
+    const t = String(category).toLowerCase().trim();
+    if (/^(temp|cold|cool|chill|freeze|refriger|temperature|cold\s*chain)$/.test(t)) return 'cool';
+    if (/^(clean|cleaning|hygiene|wash|sanitize|sanitization|disinfect)$/.test(t)) return 'clean';
+    if (/^(transport|delivery|vehicle|logistics|route|loading)$/.test(t)) return 'transport';
+    if (/^(pack|packaging|seal|container|boxing|wrapping)$/.test(t)) return 'pack';
+    if (/^(label|labelling|labeling|expiry|expiration|trace|traceability|tag)$/.test(t)) return 'label';
+    return '';
+  }
+
+  function iconForType(type) {
+    switch (type) {
+      case 'cool': return '🧊';
+      case 'clean': return '🧼';
+      case 'transport': return '🚚';
+      case 'pack': return '🥡';
+      case 'label': return '🏷️';
+      default: return '🍽️';
+    }
+  }
+
+  function nextQuestion() {
+    const modal = document.getElementById('feedbackModal');
+    if (modal.style.display === 'block') {
+      return; // wait for user to close modal
+    }
+    if (current < quizzes.length - 1) {
+      current++;
+      showQuestion();
+    } else if (answered[current]) {
+      showCertificate();
+    }
+  }
+
+  function closeModal() {
+    document.getElementById('feedbackModal').style.display = 'none';
+    if (current < quizzes.length - 1) {
+      current++;
+      showQuestion();
+    } else {
+      showCertificate();
+    }
+  }
+
+  function prevQuestion() {
+    if (current > 0) {
+      current--;
+      showQuestion();
+    }
+  }
+
+  function updateScore() {
+    const el = document.getElementById('score');
+    if (el) el.textContent = `📊 Score: ${score} / ${quizzes.length}`;
+  }
+
+  function showCertificate() {
+    document.getElementById('quizBox').style.display = 'none';
+    document.getElementById('finalScore').textContent = `${score} / ${quizzes.length}`;
+    document.getElementById('certificate').style.display = 'block';
+    document.body.classList.add('certificate-mode');
+    renderCategoryStats();
+    setTimeout(() => burstConfetti(120), 200);
+  }
+
+  function burstConfetti(count = 50) {
+    const colors = [
+      'var(--clown-red)', 'var(--clown-yellow)', 'var(--clown-green)', 'var(--clown-blue)', 'var(--clown-purple)'
+    ];
+    for (let i = 0; i < count; i++) {
+      const piece = document.createElement('div');
+      piece.className = 'confetti';
+      piece.style.left = Math.random() * 100 + 'vw';
+      piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+      piece.style.transform = `translateY(-20px) rotate(${Math.random()*360}deg)`;
+      const duration = 2.4 + Math.random() * 1.6;
+      piece.style.animationDuration = duration + 's';
+      piece.style.opacity = (0.7 + Math.random()*0.3).toFixed(2);
+      piece.style.width = (6 + Math.random()*8) + 'px';
+      piece.style.height = (8 + Math.random()*12) + 'px';
+      document.body.appendChild(piece);
+      setTimeout(() => piece.remove(), duration * 1000);
+    }
+  }
+
+  function renderCategoryStats() {
+    const counters = { cool: { c: 0, t: 0, icon: '🧊', label: 'Cold Chain' }, clean: { c: 0, t: 0, icon: '🧼', label: 'Hygiene' }, transport: { c: 0, t: 0, icon: '🚚', label: 'Transport' }, pack: { c: 0, t: 0, icon: '🥡', label: 'Packaging' }, label: { c: 0, t: 0, icon: '🏷️', label: 'Labelling' } };
+    quizzes.forEach((q, idx) => {
+      const manual = normalizeType(q.category);
+      const type = manual || detectType(q.question);
+      const key = counters[type] ? type : null;
+      if (!key) return;
+      counters[key].t += 1;
+      if (answeredCorrect[idx] === true) counters[key].c += 1;
+    });
+    const container = document.getElementById('categoryStats');
+    const order = ['cool','clean','transport','pack','label'];
+    const parts = order
+      .filter(k => counters[k].t > 0)
+      .map(k => {
+        const { c, t, icon, label } = counters[k];
+        return `<span style="display:inline-flex;align-items:center;gap:6px;margin:4px 8px;padding:6px 10px;border-radius:999px;background:#ffffffcc;border:1px solid #00000012">${icon} <strong>${label}</strong> <span style="opacity:.8">${c}/${t}</span></span>`;
+      });
+    container.innerHTML = parts.join('');
+  }
+</script>
+</body>
+</html>
+
+
