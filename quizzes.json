@@ -1,0 +1,381 @@
+{
+  "quizzes": [
+    {
+      "id": 1,
+      "question": "What is the most important factor for storing food safely during transport?",
+      "options": [
+        "Store all items at room temperature in a well-ventilated pantry.",
+        "Maintain the correct temperature for each food type.",
+        "Packaging is the most important factor."
+      ],
+      "answer": 1,
+      "explanation": "Maintaining the correct temperature is crucial to prevent bacterial growth. Chilled foods should be stored at 3°C to 5°C, frozen foods at -18°C or below, and dry goods in a cool, dry place.",
+      "food_type": "General",
+      "category": "temperature"
+    },
+    {
+      "id": 2,
+      "question": "What layout feature is essential for safe and efficient food transport vehicles?",
+      "options": [
+        "Dazzling exterior to attract attention.",
+        "Spacious interior with room for loading, inspection, and airflow.",
+        "Compact and flashy design."
+      ],
+      "answer": 1,
+      "explanation": "A spacious interior allows for proper food handling, inspection, and air circulation, which are critical for food safety.",
+      "food_type": "General",
+      "category": "capacity"
+    },
+    {
+      "id": 3,
+      "question": "What is the best material for carcass hangers in chilled meat transport?",
+      "options": [
+        "Plastic carcass hangers for flexibility.",
+        "Stainless steel carcass hangers.",
+        "Galvanized steel carcass hangers for cost-effectiveness."
+      ],
+      "answer": 1,
+      "explanation": "Stainless steel is durable, hygienic, and non-reactive, making it ideal for food-grade applications.",
+      "food_type": "Chilled meat",
+      "category": "material"
+    },
+    {
+      "id": 4,
+      "question": "How should meat cartons be loaded to prevent contamination and damage?",
+      "options": [
+        "Stack cartons directly on the vehicle floor.",
+        "Mix meat cartons with other cargo for space efficiency.",
+        "Place cartons on steel stands or plastic bases."
+      ],
+      "answer": 2,
+      "explanation": "Elevating cartons allows air circulation and prevents contamination from the vehicle floor.",
+      "food_type": "Chilled meat",
+      "category": "loading"
+    },
+    {
+      "id": 5,
+      "question": "What is the safest way to transport both hot and cold food items in the same vehicle?",
+      "options": [
+        "Pack everything together in one compartment.",
+        "Use hot packs for hot items and ambient temperature for cold items.",
+        "Use separate compartments with independent temperature control."
+      ],
+      "answer": 2,
+      "explanation": "Separate compartments with independent temperature control prevent cross-contamination and ensure both hot and cold items stay safe.",
+      "food_type": "Ready-to-eat foods",
+      "category": "temperature"
+    },
+    {
+      "id": 6,
+      "question": "What characteristics are essential for the walls and ceilings of a food transport vehicle?",
+      "options": [
+        "Light-colored, smooth, and easy-to-clean surfaces with mold resistance.",
+        "Dark, textured walls for style.",
+        "Leave them bare — less cleaning!"
+      ],
+      "answer": 0,
+      "explanation": "Smooth, light-colored surfaces allow easy inspection and cleaning, preventing mold and bacteria.",
+      "food_type": "General",
+      "category": "hygiene"
+    },
+    {
+      "id": 7,
+      "question": "What’s the most crucial factor for food safety during motorcycle delivery?",
+      "options": [
+        "Pack tightly in any container.",
+        "Use sealed, thermally insulated containers.",
+        "Speed is key — deliver fast!"
+      ],
+      "answer": 1,
+      "explanation": "Thermal insulation and sealed containers maintain safe temperatures and prevent contamination.",
+      "food_type": "Ready-to-eat foods",
+      "category": "motorcycle"
+    },
+    {
+      "id": 8,
+      "question": "Why is proper lighting important in food transport vehicles?",
+      "options": [
+        "Darkness is mysterious.",
+        "Allows inspection of food quality and damage.",
+        "One high-powered bulb is enough."
+      ],
+      "answer": 1,
+      "explanation": "Adequate lighting ensures proper inspection, inventory management, and worker safety.",
+      "food_type": "General",
+      "category": "lighting"
+    },
+    {
+      "id": 9,
+      "question": "What is the primary benefit of using plastic curtains in food transport vehicles?",
+      "options": [
+        "Adds style to the truck.",
+        "Prevents contamination and maintains hygiene.",
+        "Improves fuel efficiency."
+      ],
+      "answer": 1,
+      "explanation": "Plastic curtains act as barriers against dust and insects, helping maintain temperature and hygiene.",
+      "food_type": "General",
+      "category": "curtain"
+    },
+    {
+      "id": 10,
+      "question": "What is the most crucial element of a record-keeping system for food transport?",
+      "options": [
+        "Driver logs with weather notes.",
+        "Detailed records of loading/unloading and malfunctions.",
+        "Simple checklist of food items."
+      ],
+      "answer": 1,
+      "explanation": "Detailed records help track efficiency, monitor temperature, and identify issues.",
+      "food_type": "General",
+      "category": "records"
+    },
+    {
+      "id": 11,
+      "question": "Are plastic boxes ideal for preserving bread during distribution?",
+      "options": [
+        "Plastic traps moisture and softens crust.",
+        "Plastic protects from external elements.",
+        "No packaging — fresh bread is best unwrapped!"
+      ],
+      "answer": 0,
+      "explanation": "Plastic traps moisture. Use breathable packaging like paper or ventilated plastic.",
+      "food_type": "Bakery Products",
+      "category": "packaging"
+    },
+    {
+      "id": 12,
+      "question": "How should returned bread be stored to prevent contamination?",
+      "options": [
+        "Open bin for stacking.",
+        "Tightly sealed container.",
+        "Decorative basket for charm."
+      ],
+      "answer": 1,
+      "explanation": "Sealed containers prevent contamination from pests and other items.",
+      "food_type": "Bakery Products",
+      "category": "storage"
+    },
+    {
+      "id": 13,
+      "question": "What two features are crucial for refrigerated/frozen food transport vehicles?",
+      "options": [
+        "Loud alarm system.",
+        "Refrigeration unit + external temperature gauge.",
+        "Comfortable driver’s seat."
+      ],
+      "answer": 1,
+      "explanation": "Proper cooling and monitoring ensure food safety throughout the journey.",
+      "food_type": "Refrigerated - Frozen Food",
+      "category": "temperature"
+    },
+    {
+      "id": 14,
+      "question": "Why are insulated walls important in refrigerated compartments?",
+      "options": [
+        "Soundproofing.",
+        "Minimize temperature fluctuations.",
+        "Protect food from dents."
+      ],
+      "answer": 1,
+      "explanation": "Insulation keeps cold air in and warm air out, maintaining safe temperatures.",
+      "food_type": "Fresh fruits and vegetables",
+      "category": "insulation"
+    },
+    {
+      "id": 15,
+      "question": "What’s the difference between refrigeration and air conditioning in food transport?",
+      "options": [
+        "They’re the same — choose the cheaper.",
+        "Refrigeration for distribution, AC for short trips.",
+        "AC is better — keeps everything cool."
+      ],
+      "answer": 1,
+      "explanation": "Refrigeration maintains safe cold temperatures; AC is for comfort, not food safety.",
+      "food_type": "Fresh fruits and vegetables",
+      "category": "temperature"
+    },
+    {
+      "id": 16,
+      "question": "How should chilled food boxes be arranged in a truck?",
+      "options": [
+        "Pack tightly — no air gaps.",
+        "Leave space for air circulation.",
+        "Stack heavy boxes on top."
+      ],
+      "answer": 1,
+      "explanation": "Airflow ensures even cooling and prevents spoilage.",
+      "food_type": "Fresh fruits and vegetables",
+      "category": "loading"
+    },
+    {
+      "id": 17,
+      "question": "How should hot and cold foods be transported together?",
+      "options": [
+        "Pack together — it’s fine.",
+        "Use separate compartments with temperature control.",
+        "Use hot packs and ambient air."
+      ],
+      "answer": 1,
+      "explanation": "Separate compartments prevent temperature crossover and contamination.",
+      "food_type": "Ready-to-eat foods",
+      "category": "temperature"
+    },
+    {
+      "id": 18,
+      "question": "What feature is essential for thermal containers used for hot food transport?",
+      "options": [
+        "Large and stackable.",
+        "Insulated with thermometer (above 63°C).",
+        "Clear lids for identification."
+      ],
+      "answer": 1,
+      "explanation": "Thermometers ensure food stays above 63°C to prevent bacterial growth.",
+      "food_type": "Ready-to-eat foods",
+      "category": "temperature"
+    },
+    {
+      "id": 19,
+      "question": "What’s a crucial rule for fish transport containers?",
+      "options": [
+        "Pack fish tightly together.",
+        "Use containers designated only for fish.",
+        "Mix all seafood together."
+      ],
+      "answer": 1,
+      "explanation": "Dedicated containers prevent cross-contamination and preserve fish quality.",
+      "food_type": "Fresh fish - chilled",
+      "category": "contamination"
+    },
+    {
+      "id": 20,
+      "question": "What’s important about stickers or signage on fish transport vehicles?",
+      "options": [
+        "Fun fish graphics.",
+        "Arabic and English labels.",
+        "Technical jargon about fish transport."
+      ],
+      "answer": 1,
+      "explanation": "Multilingual signage ensures clear communication with inspectors and the public.",
+      "food_type": "Fresh fish - chilled",
+      "category": "communication"
+    },
+    {
+      "id": 21,
+      "question": "What features are crucial for the built-in preservative box in fish transport?",
+      "options": [
+        "Large single compartment.",
+        "Non-absorbent, insulated, easy to clean.",
+        "Decorative box with fish design."
+      ],
+      "answer": 1,
+      "explanation": "Non-reactive, insulated materials and cleanliness preserve fish quality and safety.",
+      "food_type": "Fresh fish - chilled",
+      "category": "design"
+    },
+    {
+      "id": 22,
+      "question": "What’s the final touch for temperature control in fish transport boxes?",
+      "options": [
+        "High-powered refrigeration unit for all sizes.",
+        "Unit sized to box volume + external gauge.",
+        "Pack with ice only."
+      ],
+      "answer": 1,
+      "explanation": "Properly sized units and external gauges ensure consistent cooling and monitoring.",
+      "food_type": "Fresh fish - chilled",
+      "category": "temperature"
+    },
+    {
+      "id": 23,
+      "question": "How should fish be packed inside the refrigerated preservative box?",
+      "options": [
+        "Toss all fish together.",
+        "Use separate containers to reduce injuries.",
+        "Fill box with water so fish can swim."
+      ],
+      "answer": 1,
+      "explanation": "Segregating species and minimizing friction prevents injuries and stress.",
+      "food_type": "Fresh fish - chilled",
+      "category": "packing"
+    },
+    {
+      "id": 24,
+      "question": "What’s the final cooling layer for fish transport?",
+      "options": [
+        "Dry ice.",
+        "Crushed ice (GSO 384) layered with fish.",
+        "No ice — refrigeration is enough."
+      ],
+      "answer": 1,
+      "explanation": "Crushed ice ensures even cooling and complies with food safety standards.",
+      "food_type": "Fresh fish - chilled",
+      "category": "temperature"
+    },
+    {
+      "id": 25,
+      "question": "How can you ensure the quality and safety of fish you sell?",
+      "options": [
+        "Buy from market and refreeze.",
+        "Source directly from fishing boats.",
+        "Origin doesn’t matter — fresh is fresh."
+      ],
+      "answer": 1,
+      "explanation": "Direct sourcing avoids refreezing and ensures freshness and traceability.",
+      "food_type": "Fresh fish - chilled",
+      "category": "sourcing"
+    },
+    {
+      "id": 26,
+      "question": "What’s crucial to maintain optimal temperatures for perishable goods?",
+      "options": [
+        "Insulated box inside and outside.",
+        "Powerful refrigeration unit alone.",
+        "Large vents for airflow."
+      ],
+      "answer": 0,
+      "explanation": "Insulation supports refrigeration and prevents heat transfer.",
+      "food_type": "Chilled meat",
+      "category": "insulation"
+    },
+    {
+      "id": 27,
+      "question": "What’s the best material for carcass hangers within the coolant system?",
+      "options": [
+        "Stainless steel.",
+        "Plastic for flexibility.",
+        "Galvanized steel for cost."
+      ],
+      "answer": 0,
+      "explanation": "Stainless steel is hygienic, durable, and non-reactive — ideal for meat transport.",
+      "food_type": "Chilled meat",
+      "category": "material"
+    },
+    {
+      "id": 28,
+      "question": "What is crucial for maintaining optimal temperatures during food transport?",
+      "options": [
+        "Manual checks of cooling unit.",
+        "Cooling unit + external gauge in cab.",
+        "Vehicle’s air conditioning system."
+      ],
+      "answer": 1,
+      "explanation": "External gauges allow real-time monitoring without opening the compartment.",
+      "food_type": "Chilled meat",
+      "category": "temperature"
+    },
+    {
+      "id": 29,
+      "question": "How should meat packaged in cartons be loaded for transport?",
+      "options": [
+        "Place on steel stands or plastic bases.",
+        "Stack directly on vehicle floor.",
+        "Mix with other cargo."
+      ],
+      "answer": 0,
+      "explanation": "Elevated loading prevents contamination and allows airflow.",
+      "food_type": "Chilled meat",
+      "category": "loading"
+    }
+  ]
+}
