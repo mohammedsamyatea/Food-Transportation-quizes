@@ -17,6 +17,7 @@
     }
 
     html, body { height: 100%; }
+    html { font-size: 130%; }
     body {
       font-family: 'Comic Neue', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
       margin: 0;
@@ -56,7 +57,7 @@
       text-align: center;
       margin: 0;
       font-family: 'Bangers', cursive;
-      font-size: 36px;
+      font-size: 47px;
       letter-spacing: 1px;
       text-shadow: 0 2px 0 #0004, 0 4px 12px rgba(0,0,0,0.35);
     }
@@ -82,14 +83,14 @@
 
     .question {
       font-family: 'Bangers', cursive;
-      font-size: 26px;
+      font-size: 34px;
       color: #1e1e1e;
       margin-bottom: 1rem;
       display: flex;
       align-items: center;
       gap: 10px;
     }
-    .question::before { content: '🎪'; font-size: 28px; }
+    .question::before { content: '🤡'; font-size: 40px; }
 
     .options { list-style: none; padding: 0; margin: 0; }
     .options li {
@@ -99,6 +100,7 @@
       padding: 0.9rem 1.1rem 0.9rem 3.25rem;
       border-radius: 14px;
       cursor: pointer;
+      font-size: 1.3em;
       transition: transform 0.12s ease, box-shadow 0.2s ease;
       box-shadow: 0 2px 0 #00000010, 0 10px 18px rgba(0,0,0,0.06);
       border: 2px dashed #ffb3b3;
@@ -110,7 +112,7 @@
       left: 12px;
       top: 50%;
       transform: translateY(-50%);
-      font-size: 22px;
+      font-size: 34px;
     }
     .options li.correct {
       background: linear-gradient(90deg, #E8FFF3, #f4fff9);
@@ -136,6 +138,7 @@
       border: 2px solid #e8e8e8;
       display: inline-block;
       min-width: 220px;
+      font-size: 1.3em;
     }
 
     #certificate {
@@ -211,6 +214,7 @@
       cursor: pointer;
       font-weight: 900;
       font-family: 'Comic Neue', sans-serif;
+      font-size: 1.3em;
       box-shadow: 0 3px 0 #00000022, 0 10px 16px rgba(0,0,0,0.12);
       transition: transform .08s ease;
     }
@@ -238,7 +242,7 @@
       background-origin: border-box;
       background-clip: padding-box, border-box;
     }
-    .modal h3 { margin-top: 0; color: #2E4A3B; font-family: 'Bangers', cursive; font-size: 24px; }
+    .modal h3 { margin-top: 0; color: #2E4A3B; font-family: 'Bangers', cursive; font-size: 31px; }
     .modal button {
       margin-top: 0.75rem;
       background: linear-gradient(90deg, var(--clown-blue), var(--clown-green));
@@ -387,19 +391,25 @@
           }
         }
         updateScore();
+        // Show tip immediately after choosing
+        const tipText = `✅ Correct answer: ${q.options[q.answer]}\n💬 ${q.explanation}`;
+        document.getElementById('modalContent').textContent = tipText;
+        document.getElementById('feedbackModal').style.display = 'block';
       };
       optionsList.appendChild(li);
     });
   }
 
   function nextQuestion() {
-    if (answered[current]) {
-      const q = quizzes[current];
-      document.getElementById('modalContent').textContent = `✅ Correct answer: ${q.options[q.answer]}\n💬 ${q.explanation}`;
-      document.getElementById('feedbackModal').style.display = 'block';
-    } else {
-      if (current < quizzes.length - 1) current++;
+    const modal = document.getElementById('feedbackModal');
+    if (modal.style.display === 'block') {
+      return; // wait for user to close modal
+    }
+    if (current < quizzes.length - 1) {
+      current++;
       showQuestion();
+    } else if (answered[current]) {
+      showCertificate();
     }
   }
 
