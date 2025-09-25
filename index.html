@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>🚛 مغامرة سلامة الغذاء – إصدار النقل</title>
+  <title>🚛 Food Safety Adventure – Transport Edition</title>
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/qrious@4.0.2/dist/qrious.min.js"></script>
   <style>
@@ -12,7 +12,7 @@
       --primary-600: #0D4A14;
       --secondary: #8D6E63; /* coffee brown */
       --accent: #A1887F; /* light coffee */
-      --muted: #F5F5DC; /* light beige */
+      --muted: #E8E8E8; /* light silver */
       --ink: #2E2E2E;
       --ink-soft: #5D4E37;
       --paper: #ffffff;
@@ -25,13 +25,13 @@
     }
 
     html, body { height: 100%; }
-    html { font-size: 140%; }
+    html { font-size: 112%; } /* Reduced by 20% from 140% */
     body {
-      font-family: 'Amiri', 'Cairo', 'Scheherazade New', serif;
+      font-family: 'Arial', 'Helvetica', sans-serif;
       margin: 0;
       padding: 0;
       color: var(--ink);
-      background: linear-gradient(135deg, #F5F5DC 0%, #E6D7C3 100%);
+      background: linear-gradient(135deg, #E8E8E8 0%, #D2B48C 100%);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -52,8 +52,8 @@
       flex-grow: 1;
       text-align: center;
       margin: 0;
-      font-family: 'Amiri', serif;
-      font-size: 60px;
+      font-family: 'Arial', sans-serif;
+      font-size: 48px; /* Reduced by 20% from 60px */
       letter-spacing: .5px;
       text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
     }
@@ -106,18 +106,18 @@
     #quizBox.qtheme-label { background-image: none; background: var(--paper); }
 
     .question {
-      font-family: 'Amiri', serif;
-      font-size: 45px;
+      font-family: 'Arial', sans-serif;
+      font-size: 36px; /* Reduced by 20% from 45px */
       color: var(--ink);
-      margin-bottom: 2.5rem;
+      margin-bottom: 2rem; /* Reduced by 20% */
       display: flex;
       align-items: center;
-      gap: 15px;
+      gap: 12px; /* Reduced by 20% */
       line-height: 1.5;
       text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-      padding: 1.5rem;
-      background: linear-gradient(135deg, #F5F5DC, #E6D7C3);
-      border-radius: 20px;
+      padding: 1.2rem; /* Reduced by 20% */
+      background: linear-gradient(135deg, #E8E8E8, #D2B48C);
+      border-radius: 16px; /* Reduced by 20% */
       border: 2px solid var(--accent);
     }
     .question::before { content: ''; }
@@ -150,23 +150,23 @@
     .options li {
       position: relative;
       background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-      margin: 1.2rem 0;
-      padding: 1.8rem 2rem;
-      border-radius: 20px;
+      margin: 1rem 0; /* Reduced by 20% */
+      padding: 1.4rem 1.6rem; /* Reduced by 20% */
+      border-radius: 16px; /* Reduced by 20% */
       cursor: pointer;
-      font-size: 1.3em;
-      font-family: 'Cairo', sans-serif;
+      font-size: 1.04em; /* Reduced by 20% from 1.3em */
+      font-family: 'Arial', sans-serif;
       font-weight: 600;
       transition: all 0.3s ease;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.1), 0 3px 6px rgba(0,0,0,0.06);
-      border: 3px solid var(--accent);
+      box-shadow: 0 5px 14px rgba(0,0,0,0.1), 0 2px 5px rgba(0,0,0,0.06);
+      border: 2px solid var(--accent); /* Reduced by 20% */
       transform: translateY(0);
     }
     
     .options li::before {
       content: '📋';
-      margin-left: 12px;
-      font-size: 1.5em;
+      margin-left: 10px; /* Reduced by 20% */
+      font-size: 1.2em; /* Reduced by 20% */
     }
     .options li:hover { 
       transform: translateY(-3px) scale(1.02); 
@@ -582,7 +582,7 @@
 <body>
 <header>
   <img src="logo-left.png" alt="Left Logo" />
-  <h1>🚛 مغامرة سلامة الغذاء – إصدار النقل</h1>
+  <h1>🚛 Food Safety Adventure – Transport Edition</h1>
   <img src="logo-right.png" alt="Right Logo" />
 </header>
 
@@ -597,12 +597,12 @@
   <div class="edu-content" id="eduContent">
     <div class="edu-header">
       <span>🎓</span>
-      <span>محتوى تعليمي</span>
+      <span>Educational Content</span>
     </div>
     <div class="edu-tabs">
-      <div class="edu-tab active" onclick="switchEduTab('video')">📹 فيديو تعليمي</div>
-      <div class="edu-tab" onclick="switchEduTab('info')">📊 معلوماتية</div>
-      <div class="edu-tab" onclick="switchEduTab('tips')">💡 نصائح</div>
+      <div class="edu-tab active" onclick="switchEduTab('video')">📹 Educational Video</div>
+      <div class="edu-tab" onclick="switchEduTab('info')">📊 Information</div>
+      <div class="edu-tab" onclick="switchEduTab('tips')">💡 Tips</div>
     </div>
     <div class="edu-content-area" id="eduContentArea">
       <!-- Content will be loaded dynamically -->
@@ -614,58 +614,58 @@
   
   <!-- Auto-advance notification -->
   <div class="auto-advance" id="autoAdvance" style="display: none;">
-    <div>⏰ سيتم الانتقال للسؤال التالي تلقائياً خلال:</div>
+    <div>⏰ Auto-advancing to next question in:</div>
     <div class="countdown" id="countdown">5</div>
   </div>
   
-  <div style="text-align:center"><div id="score">📊 النتيجة: 0 / 0</div></div>
+  <div style="text-align:center"><div id="score">📊 Score: 0 / 0</div></div>
   </div>
 </div>
 
 <div id="certificate">
   <div class="card">
-    <div class="ribbon">🎉 تهانينا! 🎉</div>
-    <h2>🎓 شهادة إتمام الدورة</h2>
-    <p>هذه الشهادة تؤكد أن <strong id="userName">محمد</strong> قد أتم بنجاح</p>
-    <p><em>دورة سلامة نقل الغذاء</em></p>
-    <p>النتيجة النهائية: <strong id="finalScore">0/0</strong></p>
+    <div class="ribbon">🎉 Congratulations! 🎉</div>
+    <h2>🎓 Certificate of Completion</h2>
+    <p>This certifies that <strong id="userName">John</strong> has successfully completed</p>
+    <p><em>Food Safety Transport Training</em></p>
+    <p>Final Score: <strong id="finalScore">0/0</strong></p>
     <div id="categoryStats" style="margin-top:12px"></div>
     <div id="certMeta" style="margin-top:8px; color:#556; font-size:.9rem; display:flex; gap:12px; justify-content:center; align-items:center; flex-wrap:wrap">
       <canvas id="certQr" width="96" height="96" style="border:1px solid #E0E6EA; border-radius:6px; background:#fff"></canvas>
     </div>
     <div class="cert-footer">
       <div class="sig-block">
-        <div class="sig-text">بلدية مدينة الشارقة – إدارة الرقابة الصحية والسلامة</div>
+        <div class="sig-text">Sharjah City Municipality – Health Control and Safety Department</div>
         <div class="sig-line"></div>
-        <div class="sig-label">التوقيع المعتمد</div>
+        <div class="sig-label">Authorized Signature</div>
       </div>
       <div class="sig-block" style="max-width: 260px; align-items:flex-end;">
         <div class="sig-text" id="certDate">—</div>
         <div class="sig-line" style="width:100%"></div>
-        <div class="sig-label">التاريخ</div>
+        <div class="sig-label">Date</div>
       </div>
     </div>
     <div style="margin-top:12px; display:flex; gap:12px; justify-content:center; align-items:center; flex-wrap:wrap">
-      <button onclick="window.print()">🖨️ طباعة الشهادة</button>
-      <button id="resetBtn" type="button" style="background:#fff;color:#2F3A3B;border:1px solid #CBD5E1">↺ إعادة الكويز</button>
+      <button onclick="window.print()">🖨️ Print Certificate</button>
+      <button id="resetBtn" type="button" style="background:#fff;color:#2F3A3B;border:1px solid #CBD5E1">↺ Reset Quiz</button>
     </div>
   </div>
   </div>
 
   <div class="nav">
-    <button onclick="prevQuestion()">⬅️ السابق</button>
-    <button onclick="nextQuestion()">التالي ➡️</button>
+    <button onclick="prevQuestion()">⬅️ Previous</button>
+    <button onclick="nextQuestion()">Next ➡️</button>
   </div>
 </div>
 
 <footer>
-  <p>© 2024 بلدية مدينة الشارقة – إدارة الرقابة الصحية والسلامة | جميع الحقوق محفوظة</p>
+  <p>© 2024 Sharjah City Municipality – Health Control and Safety Department | All Rights Reserved</p>
 </footer>
 
 <div class="modal" id="feedbackModal">
-  <h3>💡 نصيحة</h3>
+  <h3>💡 Tip</h3>
   <p id="modalContent"></p>
-  <button onclick="closeModal()">متابعة</button>
+  <button onclick="closeModal()">Continue</button>
   </div>
 <script>
   let quizzes = [];
@@ -680,24 +680,24 @@
     return [
       {
         id: 1,
-        question: 'ما هي درجة الحرارة الآمنة لنقل الأطعمة القابلة للتلف؟',
-        options: ['0-5°C', '10-15°C', '20-25°C', 'أي درجة حرارة'],
+        question: 'What is the safest temperature for transporting perishable food?',
+        options: ['0-5°C', '10-15°C', '20-25°C', 'Any temperature'],
         answer: 0,
-        explanation: 'يجب الحفاظ على الأطعمة المبردة عادة عند 0-5°C لمنع نمو البكتيريا.'
+        explanation: 'Cold chain food should generally be kept at 0-5°C to prevent bacterial growth.'
       },
       {
         id: 2,
-        question: 'أي ممارسة تقلل من التلوث المتبادل أثناء النقل؟',
-        options: ['خلط الأطعمة النيئة والمطبوخة', 'حاويات منفصلة ومختومة', 'لا حاجة للتوسيم', 'استخدام نفس الأدوات'],
+        question: 'Which practice reduces cross-contamination during transport?',
+        options: ['Mix raw and cooked foods', 'Separate sealed containers', 'No labels needed', 'Use same tools'],
         answer: 1,
-        explanation: 'الحاويات المنفصلة والمختومة والتوسيم يساعدان في تجنب التلوث المتبادل.'
+        explanation: 'Separate sealed containers and labeling help avoid cross-contamination.'
       },
       {
         id: 3,
-        question: 'ماذا يجب فعله قبل تحميل الطعام؟',
-        options: ['تجاهل نظافة المركبة', 'تعقيم أسطح المركبة', 'إيقاف التبريد', 'تخطي الفحوصات'],
+        question: 'What should be done before loading food?',
+        options: ['Ignore vehicle cleanliness', 'Sanitize vehicle surfaces', 'Turn off refrigeration', 'Skip checks'],
         answer: 1,
-        explanation: 'التعقيم يقلل من مخاطر التلوث؛ تأكد من عمل التبريد قبل التحميل.'
+        explanation: 'Sanitizing reduces contamination risk; ensure refrigeration is functional before loading.'
       }
     ];
   }
@@ -730,7 +730,7 @@
     const icon = '';
     const qEl = document.getElementById('question');
     const badge = type ? `<span class="qbadge ${type}">${type}</span>` : '';
-    qEl.innerHTML = `${badge} Q${q.id}: ${q.question}`;
+    qEl.innerHTML = `${badge} Level ${q.id}: ${q.question}`;
     qEl.classList.add('slide-in');
     
     const box = document.getElementById('quizBox');
@@ -771,7 +771,7 @@
         
         // Show tip immediately
         setTimeout(() => {
-          const tipText = `✅ الإجابة الصحيحة: ${q.options[q.answer]}\n💬 ${q.explanation}`;
+          const tipText = `✅ Correct Answer: ${q.options[q.answer]}\n💬 ${q.explanation}`;
           document.getElementById('modalContent').textContent = tipText;
           document.getElementById('feedbackModal').style.display = 'block';
         }, 1000);
@@ -845,7 +845,7 @@
 
   function updateScore() {
     const el = document.getElementById('score');
-    if (el) el.textContent = `📊 النتيجة: ${score} / ${quizzes.length}`;
+    if (el) el.textContent = `📊 Score: ${score} / ${quizzes.length}`;
   }
   
   function updateProgressBar() {
@@ -864,7 +864,7 @@
       contentArea.innerHTML = `
         <div class="video-placeholder" onclick="playVideo('${type}')">
           <div>
-            <div>شاهد الفيديو التعليمي</div>
+            <div>Watch Educational Video</div>
             <div style="font-size: 0.8em; margin-top: 5px; opacity: 0.9;">
               ${getVideoTitle(type)}
             </div>
@@ -879,8 +879,8 @@
       `;
     } else if (currentEduTab === 'tips') {
       contentArea.innerHTML = `
-        <div style="font-family: 'Cairo', sans-serif; line-height: 1.6;">
-          <h4 style="color: #1565C0; margin-bottom: 1rem;">💡 نصائح مهمة:</h4>
+        <div style="font-family: 'Arial', sans-serif; line-height: 1.6;">
+          <h4 style="color: #1565C0; margin-bottom: 1rem;">💡 Important Tips:</h4>
           ${getTipsContent(type)}
         </div>
       `;
@@ -901,13 +901,13 @@
   
   function getVideoTitle(type) {
     const titles = {
-      'cool': 'التحكم في درجة الحرارة',
-      'clean': 'النظافة والتعقيم',
-      'transport': 'نقل الغذاء الآمن',
-      'pack': 'التعبئة والتغليف',
-      'label': 'التوسيم والتوثيق'
+      'cool': 'Temperature Control',
+      'clean': 'Hygiene and Sanitization',
+      'transport': 'Safe Food Transport',
+      'pack': 'Packaging and Wrapping',
+      'label': 'Labeling and Documentation'
     };
-    return titles[type] || 'سلامة الغذاء العامة';
+    return titles[type] || 'General Food Safety';
   }
   
   function getInfographicContent(type) {
@@ -915,52 +915,52 @@
       'cool': `
         <div class="info-card">
           <div class="info-icon">🧊</div>
-          <div class="info-title">درجة الحرارة</div>
-          <div class="info-desc">0-5°C للأطعمة المبردة<br>-18°C للأطعمة المجمدة</div>
+          <div class="info-title">Temperature</div>
+          <div class="info-desc">0-5°C for chilled foods<br>-18°C for frozen foods</div>
         </div>
         <div class="info-card">
           <div class="info-icon">🌡️</div>
-          <div class="info-title">المراقبة</div>
-          <div class="info-desc">فحص دوري كل ساعتين<br>تسجيل القراءات</div>
+          <div class="info-title">Monitoring</div>
+          <div class="info-desc">Check every 2 hours<br>Record readings</div>
         </div>
         <div class="info-card">
           <div class="info-icon">❄️</div>
-          <div class="info-title">التبريد</div>
-          <div class="info-desc">وحدات تبريد مناسبة<br>عزل جيد للحرارة</div>
+          <div class="info-title">Refrigeration</div>
+          <div class="info-desc">Proper cooling units<br>Good thermal insulation</div>
         </div>
       `,
       'clean': `
         <div class="info-card">
           <div class="info-icon">🧼</div>
-          <div class="info-title">التنظيف</div>
-          <div class="info-desc">تنظيف يومي شامل<br>استخدام مواد معقمة</div>
+          <div class="info-title">Cleaning</div>
+          <div class="info-desc">Daily thorough cleaning<br>Use sanitizing materials</div>
         </div>
         <div class="info-card">
           <div class="info-icon">🦠</div>
-          <div class="info-title">منع التلوث</div>
-          <div class="info-desc">فصل الأطعمة النيئة<br>استخدام أدوات منفصلة</div>
+          <div class="info-title">Prevent Contamination</div>
+          <div class="info-desc">Separate raw foods<br>Use separate tools</div>
         </div>
         <div class="info-card">
           <div class="info-icon">👨‍🍳</div>
-          <div class="info-title">النظافة الشخصية</div>
-          <div class="info-desc">غسل اليدين<br>ارتداء القفازات</div>
+          <div class="info-title">Personal Hygiene</div>
+          <div class="info-desc">Wash hands<br>Wear gloves</div>
         </div>
       `,
       'transport': `
         <div class="info-card">
           <div class="info-icon">🚚</div>
-          <div class="info-title">المركبة</div>
-          <div class="info-desc">صيانة دورية<br>تنظيف شامل</div>
+          <div class="info-title">Vehicle</div>
+          <div class="info-desc">Regular maintenance<br>Thorough cleaning</div>
         </div>
         <div class="info-card">
           <div class="info-icon">📦</div>
-          <div class="info-title">التحميل</div>
-          <div class="info-desc">ترتيب صحيح<br>منع التلف</div>
+          <div class="info-title">Loading</div>
+          <div class="info-desc">Proper arrangement<br>Prevent damage</div>
         </div>
         <div class="info-card">
           <div class="info-icon">⏰</div>
-          <div class="info-title">الوقت</div>
-          <div class="info-desc">تسليم سريع<br>تجنب التأخير</div>
+          <div class="info-title">Time</div>
+          <div class="info-desc">Quick delivery<br>Avoid delays</div>
         </div>
       `
     };
@@ -971,26 +971,26 @@
     const tips = {
       'cool': `
         <ul style="list-style: none; padding: 0;">
-          <li>❄️ تأكد من عمل أجهزة التبريد قبل التحميل</li>
-          <li>🌡️ راقب درجة الحرارة كل ساعتين</li>
-          <li>📝 سجل جميع القراءات في السجل</li>
-          <li>🚨 في حالة العطل، انقل البضائع فوراً</li>
+          <li>❄️ Ensure cooling equipment works before loading</li>
+          <li>🌡️ Monitor temperature every 2 hours</li>
+          <li>📝 Record all readings in log</li>
+          <li>🚨 In case of malfunction, transfer goods immediately</li>
         </ul>
       `,
       'clean': `
         <ul style="list-style: none; padding: 0;">
-          <li>🧼 نظف المركبة قبل وبعد كل رحلة</li>
-          <li>🦠 استخدم مواد معقمة معتمدة</li>
-          <li>👥 درب العمال على النظافة الشخصية</li>
-          <li>📋 احتفظ بسجلات التنظيف</li>
+          <li>🧼 Clean vehicle before and after each trip</li>
+          <li>🦠 Use approved sanitizing materials</li>
+          <li>👥 Train workers on personal hygiene</li>
+          <li>📋 Keep cleaning records</li>
         </ul>
       `,
       'transport': `
         <ul style="list-style: none; padding: 0;">
-          <li>🚛 تأكد من صلاحية المركبة</li>
-          <li>📦 رتب البضائع حسب الأولوية</li>
-          <li>🛣️ اختر أقصر طريق آمن</li>
-          <li>⏰ تجنب أوقات الذروة</li>
+          <li>🚛 Ensure vehicle is roadworthy</li>
+          <li>📦 Arrange goods by priority</li>
+          <li>🛣️ Choose shortest safe route</li>
+          <li>⏰ Avoid peak hours</li>
         </ul>
       `
     };
@@ -998,7 +998,7 @@
   }
   
   function playVideo(type) {
-    alert(`سيتم تشغيل فيديو تعليمي عن: ${getVideoTitle(type)}\n\n(هذا مثال - يمكن ربطه بفيديو حقيقي من YouTube أو أي منصة أخرى)`);
+    alert(`Educational video will play about: ${getVideoTitle(type)}\n\n(This is an example - can be linked to a real video from YouTube or any other platform)`);
   }
   
   function showCelebration() {
@@ -1106,12 +1106,12 @@
     if (meta) {
       // prepend text label and verify link before QR canvas
       const label = document.createElement('span');
-      label.textContent = `رقم الشهادة: ${certId}`;
+      label.textContent = `Certificate ID: ${certId}`;
       const link = document.createElement('a');
       link.href = verifyUrl;
       link.target = '_blank';
       link.rel = 'noopener noreferrer';
-      link.textContent = 'التحقق عبر الإنترنت';
+      link.textContent = 'Verify Online';
       link.style.marginLeft = '8px';
       meta.prepend(label);
       meta.prepend(link);
@@ -1141,7 +1141,7 @@
   }
 
   function renderCategoryStats() {
-    const counters = { cool: { c: 0, t: 0, icon: '🧊', label: 'السلسلة الباردة' }, clean: { c: 0, t: 0, icon: '🧼', label: 'النظافة' }, transport: { c: 0, t: 0, icon: '🚚', label: 'النقل' }, pack: { c: 0, t: 0, icon: '🥡', label: 'التعبئة' }, label: { c: 0, t: 0, icon: '🏷️', label: 'التوسيم' } };
+    const counters = { cool: { c: 0, t: 0, icon: '🧊', label: 'Cold Chain' }, clean: { c: 0, t: 0, icon: '🧼', label: 'Hygiene' }, transport: { c: 0, t: 0, icon: '🚚', label: 'Transport' }, pack: { c: 0, t: 0, icon: '🥡', label: 'Packaging' }, label: { c: 0, t: 0, icon: '🏷️', label: 'Labeling' } };
     quizzes.forEach((q, idx) => {
       const manual = normalizeType(q.category);
       const type = manual || detectType(q.question);
