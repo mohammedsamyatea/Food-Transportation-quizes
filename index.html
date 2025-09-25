@@ -53,7 +53,8 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      line-height: 1.6;
+      line-height: 1.7;
+      font-weight: 400;
     }
 
     header {
@@ -126,13 +127,14 @@
 
     .container {
       background: var(--paper);
-      border-radius: 12px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      border: 1px solid var(--border-color);
-      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+      border: 0.5px solid var(--border-color); /* Reduced by 80% from 1px */
+      padding: 1.25rem;
       position: relative;
       overflow: hidden;
-      height: 100%;
+      height: fit-content;
+      min-height: fit-content;
     }
     
     .container::before {
@@ -164,18 +166,18 @@
 
     .question {
       font-family: 'Inter', sans-serif;
-      font-size: 1.35rem; /* Increased from 1.25rem to be bigger than answer */
-      font-weight: 500;
+      font-size: 1.4rem; /* Increased for better readability */
+      font-weight: 600; /* Increased weight for better visibility */
       color: var(--ink);
       margin-bottom: 1.5rem;
       display: flex;
       align-items: center;
       gap: 0.75rem;
-      line-height: 1.5;
+      line-height: 1.6;
       padding: 1rem;
       background: var(--muted);
-      border-radius: 8px;
-      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      border: 0.5px solid var(--border-color); /* Reduced by 80% from 1px */
     }
 
     .qbadge {
@@ -185,9 +187,9 @@
       border-radius: 9999px;
       font-family: 'Inter', sans-serif;
       font-weight: 500;
-      font-size: 0.75rem;
+      font-size: 1.35rem; /* Increased by 80% from 0.75rem */
       vertical-align: middle;
-      border: 1px solid var(--border-color);
+      border: 0.5px solid var(--border-color); /* Reduced by 80% from 1px */
       background: var(--paper);
       color: var(--ink-soft);
     }
@@ -229,15 +231,16 @@
       background: var(--paper);
       margin: 0.75rem 0;
       padding: 1rem 1.25rem;
-      border-radius: 8px;
+      border-radius: 6px;
       cursor: pointer;
-      font-size: 1.1rem; /* Slightly smaller than question */
+      font-size: 1.15rem; /* Increased for better readability */
       font-family: 'Inter', sans-serif;
-      font-weight: 400;
+      font-weight: 500; /* Increased weight for better visibility */
       transition: all 0.2s ease;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      border: 1px solid var(--border-color);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+      border: 0.5px solid var(--border-color); /* Reduced by 80% from 1px */
       transform: translateY(0);
+      line-height: 1.6;
     }
     
     .options li:hover { 
@@ -283,11 +286,13 @@
       font-weight: 600;
       color: var(--ink);
       background: var(--paper);
-      border-radius: 8px;
-      padding: 0.75rem 1rem;
-      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 0.5rem 0.75rem;
+      border: 0.5px solid var(--border-color); /* Reduced by 80% from 1px */
       font-size: 1rem;
       white-space: nowrap;
+      width: fit-content;
+      min-width: fit-content;
     }
 
     #certificate {
@@ -302,7 +307,7 @@
       background: var(--paper);
       border-radius: 12px;
       padding: 2rem;
-      border: 1px solid var(--border-color);
+      border: 0.5px solid var(--border-color); /* Reduced by 80% from 1px */
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       position: relative;
     }
@@ -368,17 +373,19 @@
     }
 
     footer {
-      background: var(--footer-bg);
-      color: var(--paper);
-      padding: 1.5rem;
+      background: transparent; /* No background */
+      color: var(--ink-soft);
+      padding: 1rem;
       text-align: center;
       flex-shrink: 0;
+      border-top: 1px solid var(--border-color);
     }
     
     footer p {
       margin: 0;
       font-size: 0.875rem;
       font-family: 'Inter', sans-serif;
+      font-weight: 400;
     }
 
     .nav {
@@ -392,7 +399,7 @@
     .nav button {
       background: var(--paper);
       color: var(--ink);
-      border: 1px solid var(--border-color);
+      border: 0.5px solid var(--border-color); /* Reduced by 80% from 1px */
       padding: 0.75rem 1.25rem;
       margin: 0 0.5rem;
       border-radius: 8px;
@@ -419,7 +426,7 @@
       left: 50%;
       transform: translate(-50%, -50%);
       background: var(--paper);
-      border: 1px solid var(--border-color);
+      border: 0.5px solid var(--border-color); /* Reduced by 80% from 1px */
       border-radius: 12px;
       padding: 2rem;
       max-width: 500px;
@@ -465,17 +472,19 @@
     /* Levels box - now inline with score */
     .levels-box {
       background: var(--paper);
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      padding: 0.75rem 1rem;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      border: 0.5px solid var(--border-color); /* Reduced by 80% from 1px */
+      border-radius: 6px;
+      padding: 0.5rem 0.75rem;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
       flex: 1;
+      width: fit-content;
+      min-width: fit-content;
     }
     
     .levels-header {
       font-family: 'Inter', sans-serif;
-      font-size: 0.875rem;
-      font-weight: 600;
+      font-size: 0.9rem;
+      font-weight: 700;
       color: var(--ink);
       margin-bottom: 0.5rem;
     }
@@ -488,13 +497,13 @@
     
     .level-item {
       border-radius: 4px;
-      padding: 0.25rem 0.5rem;
-      font-size: 0.75rem;
-      font-weight: 500;
+      padding: 0.3rem 0.6rem;
+      font-size: 0.8rem;
+      font-weight: 600;
       color: var(--ink);
       cursor: pointer;
       transition: all 0.2s ease;
-      border: 1px solid var(--border-color);
+      border: 0.5px solid var(--border-color); /* Reduced by 80% from 1px */
     }
     
     /* Green for correct answers */
@@ -531,10 +540,12 @@
     /* Educational Content */
     .edu-content {
       background: var(--muted);
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      padding: 1rem;
+      border: 0.5px solid var(--border-color); /* Reduced by 80% from 1px */
+      border-radius: 6px;
+      padding: 0.75rem;
       position: relative;
+      height: fit-content;
+      min-height: fit-content;
     }
     
     .edu-header {
@@ -557,7 +568,7 @@
     .edu-tab {
       padding: 0.5rem 1rem;
       background: var(--paper);
-      border: 1px solid var(--border-color);
+      border: 0.5px solid var(--border-color); /* Reduced by 80% from 1px */
       border-radius: 6px;
       cursor: pointer;
       font-family: 'Inter', sans-serif;
@@ -578,11 +589,12 @@
     }
     
     .edu-content-area {
-      min-height: 150px;
+      min-height: 120px;
       background: var(--paper);
-      border-radius: 8px;
-      padding: 1rem;
-      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 0.75rem;
+      border: 0.5px solid var(--border-color); /* Reduced by 80% from 1px */
+      height: fit-content;
     }
     
     .video-placeholder {
@@ -621,7 +633,7 @@
     
     .info-card {
       background: var(--hover-bg);
-      border: 1px solid var(--border-color);
+      border: 0.5px solid var(--border-color); /* Reduced by 80% from 1px */
       border-radius: 8px;
       padding: 1rem;
       text-align: center;
@@ -656,7 +668,7 @@
     /* Auto-advance feature */
     .auto-advance {
       background: var(--success-bg);
-      border: 1px solid var(--success-border);
+      border: 0.5px solid var(--success-border); /* Reduced by 80% from 1px */
       border-radius: 8px;
       padding: 1rem;
       margin: 1rem 0;
@@ -935,6 +947,17 @@
       updateScore();
     });
 
+  function getTypeSymbol(type) {
+    const symbols = {
+      'cool': '❄️',
+      'clean': '🧼',
+      'transport': '🚚',
+      'pack': '📦',
+      'label': '🏷️'
+    };
+    return symbols[type] || '📋';
+  }
+
   function showQuestion() {
     const q = quizzes[current];
     if (!q) return;
@@ -951,7 +974,7 @@
     const manualType = normalizeType(q.category);
     const type = manualType || detectType(q.question);
     const qEl = document.getElementById('question');
-    const badge = type ? `<span class="qbadge ${type}">${type}</span>` : '';
+    const badge = type ? `<span class="qbadge ${type}">${getTypeSymbol(type)}</span>` : '';
     qEl.innerHTML = `${badge} Level ${q.id}: ${q.question}`;
     qEl.classList.add('slide-in');
     
@@ -1074,7 +1097,7 @@
         }
       }
       
-      levelItem.textContent = `Level ${q.id}`;
+      levelItem.textContent = `${q.id}`;
       levelItem.onclick = () => {
         current = index;
         showQuestion();
