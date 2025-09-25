@@ -25,7 +25,7 @@
     }
 
     html, body { height: 100%; }
-    html { font-size: 112%; } /* Reduced by 20% from 140% */
+    html { font-size: 90%; } /* Reduced by another 20% from 112% */
     body {
       font-family: 'Arial', 'Helvetica', sans-serif;
       margin: 0;
@@ -53,7 +53,7 @@
       text-align: center;
       margin: 0;
       font-family: 'Arial', sans-serif;
-      font-size: 48px; /* Reduced by 20% from 60px */
+      font-size: 38px; /* Reduced by another 20% from 48px */
       letter-spacing: .5px;
       text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
     }
@@ -107,17 +107,17 @@
 
     .question {
       font-family: 'Arial', sans-serif;
-      font-size: 36px; /* Reduced by 20% from 45px */
+      font-size: 29px; /* Reduced by another 20% from 36px */
       color: var(--ink);
-      margin-bottom: 2rem; /* Reduced by 20% */
+      margin-bottom: 1.6rem; /* Reduced by another 20% */
       display: flex;
       align-items: center;
-      gap: 12px; /* Reduced by 20% */
+      gap: 10px; /* Reduced by another 20% */
       line-height: 1.5;
       text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-      padding: 1.2rem; /* Reduced by 20% */
+      padding: 1rem; /* Reduced by another 20% */
       background: linear-gradient(135deg, #E8E8E8, #D2B48C);
-      border-radius: 16px; /* Reduced by 20% */
+      border-radius: 13px; /* Reduced by another 20% */
       border: 2px solid var(--accent);
     }
     .question::before { content: ''; }
@@ -150,23 +150,23 @@
     .options li {
       position: relative;
       background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-      margin: 1rem 0; /* Reduced by 20% */
-      padding: 1.4rem 1.6rem; /* Reduced by 20% */
-      border-radius: 16px; /* Reduced by 20% */
+      margin: 0.8rem 0; /* Reduced by another 20% */
+      padding: 1.1rem 1.3rem; /* Reduced by another 20% */
+      border-radius: 13px; /* Reduced by another 20% */
       cursor: pointer;
-      font-size: 1.04em; /* Reduced by 20% from 1.3em */
+      font-size: 0.83em; /* Reduced by another 20% from 1.04em */
       font-family: 'Arial', sans-serif;
       font-weight: 600;
       transition: all 0.3s ease;
-      box-shadow: 0 5px 14px rgba(0,0,0,0.1), 0 2px 5px rgba(0,0,0,0.06);
-      border: 2px solid var(--accent); /* Reduced by 20% */
+      box-shadow: 0 4px 11px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.06);
+      border: 2px solid var(--accent);
       transform: translateY(0);
     }
     
     .options li::before {
       content: '📋';
-      margin-left: 10px; /* Reduced by 20% */
-      font-size: 1.2em; /* Reduced by 20% */
+      margin-left: 8px; /* Reduced by another 20% */
+      font-size: 0.96em; /* Reduced by another 20% */
     }
     .options li:hover { 
       transform: translateY(-3px) scale(1.02); 
@@ -382,12 +382,61 @@
     .edu-content {
       background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
       border: 2px solid #2196F3;
-      border-radius: 16px;
-      padding: 1.5rem;
-      margin: 1.5rem 0;
-      box-shadow: 0 6px 20px rgba(33, 150, 243, 0.15);
+      border-radius: 13px; /* Reduced by another 20% */
+      padding: 1.2rem; /* Reduced by another 20% */
+      margin: 1.2rem 0; /* Reduced by another 20% */
+      box-shadow: 0 5px 16px rgba(33, 150, 243, 0.15);
       position: relative;
       overflow: hidden;
+    }
+    
+    /* Top levels box */
+    .levels-box {
+      background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+      border: 2px solid #4CAF50;
+      border-radius: 13px;
+      padding: 1rem;
+      margin: 1rem 0;
+      box-shadow: 0 4px 12px rgba(76, 175, 80, 0.15);
+    }
+    
+    .levels-header {
+      font-family: 'Arial', sans-serif;
+      font-size: 1.2em;
+      font-weight: 700;
+      color: #1B5E20;
+      margin-bottom: 0.8rem;
+      text-align: center;
+    }
+    
+    .levels-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+    }
+    
+    .level-item {
+      background: rgba(255,255,255,0.8);
+      border: 1px solid #4CAF50;
+      border-radius: 8px;
+      padding: 0.4rem 0.8rem;
+      font-size: 0.8em;
+      font-weight: 600;
+      color: #1B5E20;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .level-item:hover {
+      background: #4CAF50;
+      color: white;
+      transform: scale(1.05);
+    }
+    
+    .level-item.active {
+      background: #2E7D32;
+      color: white;
     }
     
     .edu-content::before {
@@ -593,7 +642,26 @@
     <div class="progress-bar" id="progressBar"></div>
   </div>
   
-  <!-- Educational Content Box -->
+  <!-- Levels Box at Top -->
+  <div class="levels-box" id="levelsBox">
+    <div class="levels-header">🎯 Training Levels</div>
+    <div class="levels-list" id="levelsList">
+      <!-- Levels will be loaded dynamically -->
+    </div>
+  </div>
+  
+  <div class="question" id="question"></div>
+  <ul class="options" id="options"></ul>
+  
+  <!-- Auto-advance notification -->
+  <div class="auto-advance" id="autoAdvance" style="display: none;">
+    <div>⏰ Auto-advancing to next question in:</div>
+    <div class="countdown" id="countdown">5</div>
+  </div>
+  
+  <div style="text-align:center"><div id="score">📊 Score: 0 / 0</div></div>
+  
+  <!-- Educational Content Box at Bottom -->
   <div class="edu-content" id="eduContent">
     <div class="edu-header">
       <span>🎓</span>
@@ -608,17 +676,6 @@
       <!-- Content will be loaded dynamically -->
     </div>
   </div>
-  
-  <div class="question" id="question"></div>
-  <ul class="options" id="options"></ul>
-  
-  <!-- Auto-advance notification -->
-  <div class="auto-advance" id="autoAdvance" style="display: none;">
-    <div>⏰ Auto-advancing to next question in:</div>
-    <div class="countdown" id="countdown">5</div>
-  </div>
-  
-  <div style="text-align:center"><div id="score">📊 Score: 0 / 0</div></div>
   </div>
 </div>
 
@@ -630,9 +687,6 @@
     <p><em>Food Safety Transport Training</em></p>
     <p>Final Score: <strong id="finalScore">0/0</strong></p>
     <div id="categoryStats" style="margin-top:12px"></div>
-    <div id="certMeta" style="margin-top:8px; color:#556; font-size:.9rem; display:flex; gap:12px; justify-content:center; align-items:center; flex-wrap:wrap">
-      <canvas id="certQr" width="96" height="96" style="border:1px solid #E0E6EA; border-radius:6px; background:#fff"></canvas>
-    </div>
     <div class="cert-footer">
       <div class="sig-block">
         <div class="sig-text">Sharjah City Municipality – Health Control and Safety Department</div>
@@ -721,6 +775,9 @@
     
     // Update progress bar
     updateProgressBar();
+    
+    // Update levels display
+    updateLevelsDisplay();
     
     // Load educational content
     loadEducationalContent(q);
@@ -854,6 +911,25 @@
     if (progressBar) {
       progressBar.style.width = progress + '%';
     }
+  }
+  
+  function updateLevelsDisplay() {
+    const levelsList = document.getElementById('levelsList');
+    if (!levelsList) return;
+    
+    levelsList.innerHTML = '';
+    quizzes.forEach((q, index) => {
+      const levelItem = document.createElement('div');
+      levelItem.className = 'level-item';
+      if (index === current) levelItem.classList.add('active');
+      levelItem.textContent = `Level ${q.id}`;
+      levelItem.onclick = () => {
+        current = index;
+        showQuestion();
+        updateScore();
+      };
+      levelsList.appendChild(levelItem);
+    });
   }
   
   function loadEducationalContent(question) {
@@ -1100,24 +1176,6 @@
     const dateStr = d.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
     const dateEl = document.getElementById('certDate');
     if (dateEl) dateEl.textContent = dateStr;
-    const certId = generateCertificateId();
-    const meta = document.getElementById('certMeta');
-    const verifyUrl = `${window.location.origin}/verify?cert=${encodeURIComponent(certId)}`;
-    if (meta) {
-      // prepend text label and verify link before QR canvas
-      const label = document.createElement('span');
-      label.textContent = `Certificate ID: ${certId}`;
-      const link = document.createElement('a');
-      link.href = verifyUrl;
-      link.target = '_blank';
-      link.rel = 'noopener noreferrer';
-      link.textContent = 'Verify Online';
-      link.style.marginLeft = '8px';
-      meta.prepend(label);
-      meta.prepend(link);
-    }
-    renderQr(verifyUrl);
-    
   }
 
   function burstConfetti(count = 50) {
@@ -1161,19 +1219,6 @@
     container.innerHTML = parts.join('');
   }
 
-  function generateCertificateId() {
-    const rnd = Math.random().toString(36).slice(2, 8).toUpperCase();
-    const ts = Date.now().toString(36).toUpperCase().slice(-6);
-    return `${ts}-${rnd}`;
-  }
-
-  function renderQr(text) {
-    try {
-      const canvas = document.getElementById('certQr');
-      if (!canvas || typeof QRious === 'undefined') return;
-      new QRious({ element: canvas, value: text, size: 96, level: 'H', background: 'white', foreground: '#222' });
-    } catch (_) {}
-  }
 
   // Reset quiz flow
   document.addEventListener('click', (e) => {
