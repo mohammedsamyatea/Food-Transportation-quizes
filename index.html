@@ -259,7 +259,7 @@
     }
     
     .options li.correct::before {
-      content: '✓';
+      content: '✅';
       font-size: 1.25rem;
       font-weight: 600;
       margin-right: 0.5rem;
@@ -275,7 +275,7 @@
     }
     
     .options li.incorrect::before {
-      content: '✗';
+      content: '❌';
       font-size: 1.25rem;
       font-weight: 600;
       margin-right: 0.5rem;
@@ -714,8 +714,32 @@
       }
     }
     
+    @keyframes celebrate {
+      0% { transform: scale(1) rotate(0deg); }
+      25% { transform: scale(1.1) rotate(-5deg); }
+      50% { transform: scale(1.2) rotate(5deg); }
+      75% { transform: scale(1.1) rotate(-2deg); }
+      100% { transform: scale(1.05) rotate(0deg); }
+    }
+    
+    @keyframes confetti {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+    }
+    
     .slide-in {
       animation: slideInUp 0.4s ease-out;
+    }
+    
+    .celebrate {
+      animation: celebrate 0.6s ease-in-out;
+    }
+    
+    .confetti {
+      position: absolute;
+      font-size: 1.5rem;
+      pointer-events: none;
+      animation: confetti 1s ease-out forwards;
     }
 
     /* Responsive design */
@@ -947,6 +971,29 @@
       updateScore();
     });
 
+  function createConfetti() {
+    const confettiEmojis = ['🎉', '🎊', '✨', '🌟', '💫', '🎈'];
+    const container = document.getElementById('quizBox');
+    
+    for (let i = 0; i < 15; i++) {
+      const confetti = document.createElement('div');
+      confetti.className = 'confetti';
+      confetti.textContent = confettiEmojis[Math.floor(Math.random() * confettiEmojis.length)];
+      confetti.style.left = Math.random() * 100 + '%';
+      confetti.style.animationDelay = Math.random() * 0.5 + 's';
+      confetti.style.animationDuration = (Math.random() * 0.5 + 0.8) + 's';
+      
+      container.appendChild(confetti);
+      
+      // Remove confetti after animation
+      setTimeout(() => {
+        if (confetti.parentNode) {
+          confetti.parentNode.removeChild(confetti);
+        }
+      }, 1500);
+    }
+  }
+
   function getTypeSymbol(type) {
     const symbols = {
       'cool': '❄️',
@@ -1001,12 +1048,17 @@
         
         if (i === q.answer) {
           li.classList.add('correct');
+          li.classList.add('celebrate');
           score++;
           answeredCorrect[current] = true;
+          
+          // Add confetti celebration effect
+          createConfetti();
         } else {
           li.classList.add('incorrect');
           if (optionsList.children[q.answer]) {
             optionsList.children[q.answer].classList.add('correct');
+            optionsList.children[q.answer].classList.add('celebrate');
           }
           answeredCorrect[current] = false;
         }
