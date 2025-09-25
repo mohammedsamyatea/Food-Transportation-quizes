@@ -8,18 +8,20 @@
   <script src="https://unpkg.com/qrious@4.0.2/dist/qrious.min.js"></script>
   <style>
     :root {
-      --primary: #2E7D32; /* green */
-      --primary-600: #1B5E20;
-      --secondary: #2F3A3B; /* dark slate */
-      --accent: #AF9961; /* muted gold */
-      --muted: #ECEFF1; /* light gray */
-      --ink: #253033;
-      --ink-soft: #4a5b60;
+      --primary: #1B5E20; /* dark green */
+      --primary-600: #0D4A14;
+      --secondary: #8D6E63; /* coffee brown */
+      --accent: #A1887F; /* light coffee */
+      --muted: #F5F5DC; /* light beige */
+      --ink: #2E2E2E;
+      --ink-soft: #5D4E37;
       --paper: #ffffff;
       --success-bg: #E8F5E9; /* subtle green */
       --danger-bg: #FDECEA; /* subtle red */
-      --success-border: #A5D6A7;
-      --danger-border: #FFCDD2;
+      --success-border: #4CAF50;
+      --danger-border: #F44336;
+      --header-bg: #1B5E20;
+      --footer-bg: #8D6E63;
     }
 
     html, body { height: 100%; }
@@ -27,23 +29,23 @@
     body {
       font-family: 'Amiri', 'Cairo', 'Scheherazade New', serif;
       margin: 0;
-      padding-bottom: 90px;
+      padding: 0;
       color: var(--ink);
-      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      background: linear-gradient(135deg, #F5F5DC 0%, #E6D7C3 100%);
       min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
     header {
-      background: linear-gradient(90deg, var(--secondary), var(--primary));
+      background: linear-gradient(90deg, var(--header-bg), var(--secondary));
       color: white;
-      padding: 0.75rem 1.25rem;
+      padding: 1.5rem 2rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 5;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      flex-shrink: 0;
     }
     header img { height: 56px; }
     header h1 {
@@ -51,24 +53,32 @@
       text-align: center;
       margin: 0;
       font-family: 'Amiri', serif;
-      font-size: 50px;
+      font-size: 60px;
       letter-spacing: .5px;
       text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
     }
     
 
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 2rem 0;
+    }
+
     .container {
-      max-width: 900px;
-      margin: 2rem auto;
-      padding: 1.5rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2.5rem;
       background: var(--paper);
-      border-radius: 20px;
+      border-radius: 25px;
       box-shadow:
-        0 8px 32px rgba(0,0,0,0.12),
-        0 2px 8px rgba(0,0,0,0.08);
-      border: 2px solid #E0E6EA;
+        0 12px 40px rgba(0,0,0,0.15),
+        0 4px 12px rgba(0,0,0,0.1);
+      border: 3px solid var(--accent);
       position: relative;
       overflow: hidden;
+      flex: 1;
     }
     
     .container::before {
@@ -97,14 +107,18 @@
 
     .question {
       font-family: 'Amiri', serif;
-      font-size: 38px;
-      color: #1e1e1e;
-      margin-bottom: 1.5rem;
+      font-size: 45px;
+      color: var(--ink);
+      margin-bottom: 2.5rem;
       display: flex;
       align-items: center;
-      gap: 12px;
-      line-height: 1.4;
+      gap: 15px;
+      line-height: 1.5;
       text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+      padding: 1.5rem;
+      background: linear-gradient(135deg, #F5F5DC, #E6D7C3);
+      border-radius: 20px;
+      border: 2px solid var(--accent);
     }
     .question::before { content: ''; }
     .qicon { display:none; }
@@ -136,23 +150,23 @@
     .options li {
       position: relative;
       background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-      margin: 0.8rem 0;
-      padding: 1.2rem 1.4rem;
-      border-radius: 16px;
+      margin: 1.2rem 0;
+      padding: 1.8rem 2rem;
+      border-radius: 20px;
       cursor: pointer;
-      font-size: 1.1em;
+      font-size: 1.3em;
       font-family: 'Cairo', sans-serif;
-      font-weight: 500;
+      font-weight: 600;
       transition: all 0.3s ease;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
-      border: 2px solid #E0E6EA;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1), 0 3px 6px rgba(0,0,0,0.06);
+      border: 3px solid var(--accent);
       transform: translateY(0);
     }
     
     .options li::before {
       content: '📋';
-      margin-left: 8px;
-      font-size: 1.2em;
+      margin-left: 12px;
+      font-size: 1.5em;
     }
     .options li:hover { 
       transform: translateY(-3px) scale(1.02); 
@@ -169,7 +183,8 @@
     }
     
     .options li.correct::before {
-      content: '✅';
+      content: '🎉';
+      font-size: 2em;
     }
     .options li.incorrect {
       background: linear-gradient(135deg, #FDECEA 0%, #FFCDD2 100%);
@@ -179,7 +194,8 @@
     }
     
     .options li.incorrect::before {
-      content: '❌';
+      content: '😔';
+      font-size: 2em;
     }
 
     #score {
@@ -262,16 +278,27 @@
       margin-top: 6px;
     }
 
-    .nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: #ffffff;
-      padding: 0.75rem;
+    footer {
+      background: linear-gradient(90deg, var(--footer-bg), var(--accent));
+      color: white;
+      padding: 1.5rem 2rem;
       text-align: center;
-      z-index: 10;
+      box-shadow: 0 -4px 12px rgba(0,0,0,0.15);
+      flex-shrink: 0;
+    }
+    
+    footer p {
+      margin: 0;
+      font-size: 1.1em;
+      font-family: 'Cairo', sans-serif;
+    }
+
+    .nav {
+      background: #ffffff;
+      padding: 1rem;
+      text-align: center;
       box-shadow: 0 -6px 16px rgba(0,0,0,0.06);
+      margin-top: 2rem;
     }
     .nav button {
       background: #fff;
@@ -297,26 +324,44 @@
       left: 50%;
       transform: translate(-50%, -50%);
       background: #fff;
-      border: 1px solid #E0E6EA;
-      border-radius: 12px;
-      padding: 1rem;
-      max-width: 460px;
+      border: 3px solid var(--accent);
+      border-radius: 20px;
+      padding: 2.5rem;
+      max-width: 600px;
       width: 90%;
-      box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
       z-index: 200;
       text-align: center;
       background-image: none;
     }
-    .modal h3 { margin-top: 0; color: var(--secondary); font-family: 'Cairo', sans-serif; font-size: 28px; }
+    .modal h3 { 
+      margin-top: 0; 
+      color: var(--primary); 
+      font-family: 'Amiri', serif; 
+      font-size: 40px; 
+      margin-bottom: 1.5rem;
+    }
+    .modal p {
+      font-size: 1.4em;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+      color: var(--ink);
+    }
     .modal button {
-      margin-top: 0.75rem;
+      margin-top: 1rem;
       background: var(--primary);
       color: #fff;
       border: none;
-      padding: 0.55rem 1.1rem;
-      border-radius: 12px;
+      padding: 1rem 2rem;
+      border-radius: 15px;
       cursor: pointer;
       font-weight: 700;
+      font-size: 1.2em;
+      transition: all 0.3s ease;
+    }
+    .modal button:hover {
+      background: var(--primary-600);
+      transform: scale(1.05);
     }
 
     /* Certificate/Print adjustments */
@@ -539,9 +584,10 @@
   <img src="logo-left.png" alt="Left Logo" />
   <h1>🚛 مغامرة سلامة الغذاء – إصدار النقل</h1>
   <img src="logo-right.png" alt="Right Logo" />
-  </header>
+</header>
 
-<div class="container" id="quizBox">
+<div class="main-content">
+  <div class="container" id="quizBox">
   <!-- Progress Bar -->
   <div class="progress-container">
     <div class="progress-bar" id="progressBar"></div>
@@ -574,6 +620,7 @@
   
   <div style="text-align:center"><div id="score">📊 النتيجة: 0 / 0</div></div>
   </div>
+</div>
 
 <div id="certificate">
   <div class="card">
@@ -605,10 +652,15 @@
   </div>
   </div>
 
-<div class="nav">
-  <button onclick="prevQuestion()">⬅️ السابق</button>
-  <button onclick="nextQuestion()">التالي ➡️</button>
+  <div class="nav">
+    <button onclick="prevQuestion()">⬅️ السابق</button>
+    <button onclick="nextQuestion()">التالي ➡️</button>
   </div>
+</div>
+
+<footer>
+  <p>© 2024 بلدية مدينة الشارقة – إدارة الرقابة الصحية والسلامة | جميع الحقوق محفوظة</p>
+</footer>
 
 <div class="modal" id="feedbackModal">
   <h3>💡 نصيحة</h3>
@@ -706,17 +758,23 @@
           li.classList.add('correct');
           score++;
           answeredCorrect[current] = true;
+          showCelebration();
         } else {
           li.classList.add('incorrect');
           if (optionsList.children[q.answer]) {
             optionsList.children[q.answer].classList.add('correct');
           }
           answeredCorrect[current] = false;
+          showDisappointment();
         }
         updateScore();
         
-        // Auto-advance after 3 seconds
-        startAutoAdvance();
+        // Show tip immediately
+        setTimeout(() => {
+          const tipText = `✅ الإجابة الصحيحة: ${q.options[q.answer]}\n💬 ${q.explanation}`;
+          document.getElementById('modalContent').textContent = tipText;
+          document.getElementById('feedbackModal').style.display = 'block';
+        }, 1000);
       };
       optionsList.appendChild(li);
     });
@@ -941,6 +999,74 @@
   
   function playVideo(type) {
     alert(`سيتم تشغيل فيديو تعليمي عن: ${getVideoTitle(type)}\n\n(هذا مثال - يمكن ربطه بفيديو حقيقي من YouTube أو أي منصة أخرى)`);
+  }
+  
+  function showCelebration() {
+    // Create celebration elements
+    const celebration = document.createElement('div');
+    celebration.style.cssText = `
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 4em;
+      z-index: 1000;
+      pointer-events: none;
+      animation: celebrationPop 2s ease-out forwards;
+    `;
+    celebration.innerHTML = '🎉✨🎊';
+    
+    // Add celebration animation
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes celebrationPop {
+        0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+        50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+        100% { opacity: 0; transform: translate(-50%, -50%) scale(1); }
+      }
+    `;
+    document.head.appendChild(style);
+    
+    document.body.appendChild(celebration);
+    setTimeout(() => {
+      document.body.removeChild(celebration);
+      document.head.removeChild(style);
+    }, 2000);
+  }
+  
+  function showDisappointment() {
+    // Create disappointment element
+    const disappointment = document.createElement('div');
+    disappointment.style.cssText = `
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 3em;
+      z-index: 1000;
+      pointer-events: none;
+      animation: disappointmentShake 1.5s ease-out forwards;
+    `;
+    disappointment.innerHTML = '😔💔';
+    
+    // Add disappointment animation
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes disappointmentShake {
+        0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+        25% { opacity: 1; transform: translate(-50%, -50%) scale(1.1) rotate(-5deg); }
+        50% { transform: translate(-50%, -50%) scale(1) rotate(5deg); }
+        75% { transform: translate(-50%, -50%) scale(1.1) rotate(-3deg); }
+        100% { opacity: 0; transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+      }
+    `;
+    document.head.appendChild(style);
+    
+    document.body.appendChild(disappointment);
+    setTimeout(() => {
+      document.body.removeChild(disappointment);
+      document.head.removeChild(style);
+    }, 1500);
   }
   
   function startAutoAdvance() {
